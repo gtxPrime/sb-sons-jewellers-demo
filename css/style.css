@@ -179,3 +179,4 @@ footer .brand{justify-content:center;margin-bottom:14px}
 .dw-img{width:min(300px,70vw);aspect-ratio:4/5;margin:34px auto 0;border-radius:200px 200px 18px 18px;overflow:hidden;border:1px solid #d9b25f88;box-shadow:0 30px 80px #000a}.dw-img img{width:100%;height:100%;object-fit:cover}
 
 @media(max-height:820px){.scroll-cue{display:none}}
+@media(max-width:700px){.cpanel{width:76vw;max-height:62vh}.cpanel:nth-child(even){margin-top:30px}#coll .head{padding-top:84px}}
