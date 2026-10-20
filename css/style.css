@@ -181,3 +181,45 @@ footer .brand{justify-content:center;margin-bottom:14px}
 @media(max-height:820px){.scroll-cue{display:none}}
 @media(max-width:700px){.cpanel{width:76vw;max-height:62vh}.cpanel:nth-child(even){margin-top:30px}#coll .head{padding-top:84px}}
 #coll{min-height:100vh;display:flex;flex-direction:column;justify-content:center}#coll .head{padding-top:84px!important}
+
+/* real-content additions */
+.rate-chip{display:inline-flex;align-items:center;gap:10px;margin:22px auto 0;padding:8px 18px;border:1px solid #d9b25f55;border-radius:99px;background:#070c1a88;backdrop-filter:blur(8px);font-size:13px;letter-spacing:.04em}
+.rate-chip b{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gold2);line-height:1}
+.stars{color:var(--gold);letter-spacing:2px;font-size:13px}
+#hero .hero-in{text-align:center}
+#hero .hero-in .rate-chip{display:flex;width:max-content;max-width:100%}
+@media(max-width:560px){.rate-chip{font-size:12px;padding:7px 14px}}
+#showroom{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;background:#000}
+.sr-bg{position:absolute;inset:0}
+.sr-bg img{width:100%;height:100%;object-fit:cover}
+.sr-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#070c1aee 0%,#070c1a99 45%,#070c1a22 100%)}
+.sr-copy{position:relative;z-index:2;padding-top:90px;padding-bottom:90px}
+.sr-copy h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(48px,8vw,110px);line-height:1;margin:14px 0 18px}
+.sr-copy p{max-width:460px;color:#e6dcc3;margin-bottom:28px}
+@media(max-width:700px){.sr-bg::after{background:linear-gradient(180deg,#070c1acc,#070c1a99)}}
+#reviews{padding:clamp(70px,9vw,130px) 0;background:linear-gradient(180deg,var(--navy),var(--navy2))}
+#reviews h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,76px);line-height:1.05;margin-top:12px}
+.rv-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.rv-score{display:grid;justify-items:center;padding:18px 30px;border:1px solid #d9b25f44;border-radius:20px;background:#ffffff06}
+.rv-score b{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;line-height:1;color:var(--gold2)}
+.rv-score small{font-size:12px;color:#cfc3a6;letter-spacing:.08em;margin-top:4px}
+.rv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:44px}
+.rv{padding:30px 26px;border:1px solid #d9b25f33;border-radius:18px;background:#ffffff05;display:flex;flex-direction:column;justify-content:space-between;gap:22px}
+.rv blockquote{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.35;color:var(--ivory)}
+.rv blockquote::before{content:"\201C";display:block;font-size:56px;line-height:.6;color:var(--gold);margin-bottom:10px}
+.rv figcaption{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.rv figcaption small{display:block;letter-spacing:.06em;text-transform:none;color:#b9ae94;margin-top:2px;font-size:12px}
+.ulink{color:var(--gold2);border-bottom:1px solid #d9b25f66}
+.copy-btn{cursor:pointer;border-bottom:1px dotted #d9b25f88}
+.mini{margin-left:12px;padding:2px 12px;border:1px solid #d9b25f55;border-radius:99px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.hours{margin:6px 0 28px;padding:20px 22px;border:1px solid #d9b25f33;border-radius:16px;background:#ffffff05;max-width:440px}
+.hours .hh{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.hours em{font-style:normal;letter-spacing:.1em;color:#cfc3a6}
+.hours em.on{color:#8fd19e}
+.hours table{width:100%;border-collapse:collapse;font-size:14px}
+.hours td{padding:5px 0;color:#d8ccb0}
+.hours td:last-child{text-align:right}
+.hours tr.today td{color:var(--gold2);font-weight:500}
+.hours .small{font-size:12px;color:#a99f88;margin-top:10px}
+.vmap{border-radius:22px;overflow:hidden;height:min(620px,70vh);border:1px solid #d9b25f33;min-height:340px}
+.vmap iframe{width:100%;height:100%;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.6) brightness(.95)}
