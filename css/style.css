@@ -60,10 +60,10 @@ h2{font-size:clamp(38px,6vw,84px)}
 #hero h1 em{display:block;font-style:italic;font-weight:400}
 #hero p.sub{max-width:520px;margin:22px auto 34px;font-size:clamp(14px,1.6vw,17px);color:#e9dfc8cc}
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.scroll-cue{position:absolute;bottom:24px;left:50%;translate:-50% 0;z-index:3;font-size:10px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-cue{position:absolute;bottom:20px;left:50%;translate:-50% 0;z-index:3;font-size:10px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
 .scroll-cue i{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:cue 1.8s infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.ticker{position:absolute;top:96px;left:0;right:0;z-index:3;text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);opacity:.9}
+.ticker{position:absolute;bottom:92px;left:0;right:0;z-index:3;text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);opacity:.9}
 /* story */
 #story{height:100vh;overflow:hidden;display:grid;place-items:center;background:var(--navy2)}
 #story .pin{width:100%;height:100%;display:grid;place-items:center;position:relative}
@@ -86,10 +86,10 @@ h2{font-size:clamp(38px,6vw,84px)}
 @keyframes tw{50%{opacity:.25;transform:scale(.6)}}
 /* collections horizontal */
 #coll{background:var(--navy);overflow:hidden}
-#coll .head{padding:clamp(60px,9vw,120px) 0 30px}
+#coll .head{padding-top:clamp(84px,9vw,110px);padding-bottom:18px}
 #coll .track{display:flex;gap:clamp(18px,3vw,44px);padding:0 clamp(18px,6vw,90px);width:max-content;align-items:center}
-.cpanel{position:relative;flex:0 0 auto;width:clamp(280px,34vw,480px);aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:#111}
-.cpanel:nth-child(even){margin-top:clamp(40px,8vw,120px)}
+.cpanel{position:relative;flex:0 0 auto;width:clamp(240px,min(26vw,52vh),400px);aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:#111}
+.cpanel:nth-child(even){margin-top:clamp(24px,5vw,70px)}
 .cpanel img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .cpanel:hover img{transform:scale(1.07)}
 .cpanel::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,#000000c8)}
@@ -177,3 +177,5 @@ footer .brand{justify-content:center;margin-bottom:14px}
 .card .row{justify-content:flex-start}
 
 .dw-img{width:min(300px,70vw);aspect-ratio:4/5;margin:34px auto 0;border-radius:200px 200px 18px 18px;overflow:hidden;border:1px solid #d9b25f88;box-shadow:0 30px 80px #000a}.dw-img img{width:100%;height:100%;object-fit:cover}
+
+@media(max-height:820px){.scroll-cue{display:none}}

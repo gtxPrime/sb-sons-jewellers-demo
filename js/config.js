@@ -9,7 +9,6 @@ window.SB={
   {id:"dp1",name:"Solitaire Diamond Pendant",cat:"Diamond",meta:"Natural diamond pendant",img:"img/ai/diamond-pendant.jpg"},
   {id:"gb1",name:"Gold Bridal Necklace Set",cat:"Gold",meta:"Layered necklace, earrings and ring",img:"img/ai/gold-bridal.jpg",tag:"Bridal"},
   {id:"gc1",name:"Gold Choker Set",cat:"Gold",meta:"Choker with earrings",img:"img/ai/gold-choker.jpg"},
-  {id:"gc2",name:"Gold Choker Necklace",cat:"Gold",meta:"Statement choker",img:"img/ai/gold-choker-2.jpg"},
   {id:"gj1",name:"Antique Gold Jhumkas",cat:"Gold",meta:"Carved bell jhumkas, green drops",img:"img/ai/gold-jhumka.jpg"},
   {id:"sp1",name:"Antique Silver Payal",cat:"Silver",meta:"Payal and bichhiya",img:"img/ai/silver-payal.jpg",tag:"Silver"},
   {id:"sa1",name:"Silver Anklets and Toe Rings",cat:"Silver",meta:"Payal, bichhiya, toe rings",img:"img/ai/silver-anklets.jpg"}
