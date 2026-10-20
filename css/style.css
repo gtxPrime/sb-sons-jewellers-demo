@@ -180,3 +180,4 @@ footer .brand{justify-content:center;margin-bottom:14px}
 
 @media(max-height:820px){.scroll-cue{display:none}}
 @media(max-width:700px){.cpanel{width:76vw;max-height:62vh}.cpanel:nth-child(even){margin-top:30px}#coll .head{padding-top:84px}}
+#coll{min-height:100vh;display:flex;flex-direction:column;justify-content:center}#coll .head{padding-top:84px!important}
