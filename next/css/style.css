@@ -393,3 +393,11 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 @media(max-width:700px){#story .story-line{bottom:12%;top:auto}.story-gem{width:70vw}}
 @media(max-width:700px){#story .pin .story-line{top:auto!important;bottom:13%!important;margin:0!important;transform-origin:center}#story .story-line small{margin-bottom:10px}}
 #gem{display:none!important}
+/* AI demo texture layers (img/ai/tx-*.jpg) */
+#hero,#diwali,#visit,footer{position:relative}
+.tex{position:absolute;left:0;right:0;top:-8%;bottom:-8%;z-index:1;pointer-events:none;background-size:cover;background-position:center;mix-blend-mode:soft-light;opacity:.38;will-change:transform}
+.tex.silk{background-image:url(../img/ai/tx-silk.jpg);opacity:.5}
+.tex.crimson{background-image:url(../img/ai/tx-crimson.jpg);opacity:.42}
+.tex.foil{background-image:url(../img/ai/tx-foil.jpg);mix-blend-mode:overlay;opacity:.16;-webkit-mask-image:linear-gradient(to top,#000,transparent 75%);mask-image:linear-gradient(to top,#000,transparent 75%)}
+.tex.velvet{background-image:url(../img/ai/tx-velvet.jpg);opacity:.45}
+@media(max-width:760px){.tex{opacity:.3}.tex.foil{opacity:.14}}

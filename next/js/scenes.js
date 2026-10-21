@@ -31,6 +31,8 @@ function go(){
  const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
  [0,1.1,2.2,3.3].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.4,ease:'power2.out'},t);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.85)});
  gsap.to('#sgem .glint',{backgroundPosition:'-160% 0',ease:'none',scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:1})});
+ /* texture layers with slow parallax */
+ [['#hero','silk'],['#diwali','crimson'],['#visit','velvet'],['footer','foil']].forEach(([sel,t])=>{const h=$(sel);if(!h)return;const e=document.createElement('i');e.className='tex '+t;e.setAttribute('aria-hidden','true');h.appendChild(e);gsap.fromTo(e,{yPercent:-4},{yPercent:4,ease:'none',scrollTrigger:ST({trigger:h,start:'top bottom',end:'bottom top',scrub:true})})});
  /* 3. word bands slide against each other */
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
