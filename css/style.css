@@ -262,3 +262,4 @@ footer .brand img{height:64px}
 #hero .hero-in{padding-top:64px}
 .hero-mono{width:clamp(84px,9vw,120px)!important}
 #hero .hero-in{padding-top:70px}
+#reviews,#why,#visit,#gallery{overflow-x:clip}
