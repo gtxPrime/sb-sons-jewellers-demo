@@ -260,3 +260,5 @@ footer .brand img{height:64px}
 .hero-mono{width:clamp(120px,15vw,190px)!important;margin-bottom:14px!important}
 .gem path,.story-gem path{stroke:#e8c877!important}
 #hero .hero-in{padding-top:64px}
+.hero-mono{width:clamp(84px,9vw,120px)!important}
+#hero .hero-in{padding-top:70px}
