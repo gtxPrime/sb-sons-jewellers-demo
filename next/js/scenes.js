@@ -17,10 +17,10 @@ function go(){
  ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.85,duration:.4})});
  /* 2. story: the diamond turns from side view to top view and back (image sequence), drifting opposite each chapter */
  const sg=$('#sgem'),fr=$$('#sgem .f'),sx=mobile?0:innerWidth*.27;
- gsap.set(sg,{opacity:0,scale:.6,xPercent:-50,yPercent:-50,left:'50%',top:'50%'});
+ gsap.set(sg,{opacity:0,scale:.6,xPercent:-50,yPercent:-50,left:'50%',top:mobile?'34%':'50%'});
  const P={v:0};gsap.set(fr,{opacity:0});const setF=()=>{const v=P.v,i=Math.min(7,Math.floor(v)),f=v-i;fr.forEach((e,k)=>{e.style.opacity=k===i?1-f:k===i+1?f:0})};setF();
  const rot=gsap.timeline({onUpdate:setF,scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8})});
- rot.to(sg,{opacity:mobile?.4:1,scale:1,duration:.4,ease:'power2.out'},0)
+ rot.to(sg,{opacity:1,scale:mobile?.9:1,duration:.4,ease:'power2.out'},0)
   .to(P,{v:2.6,duration:.7,ease:'sine.inOut'},.3).to(P,{v:5,duration:.9,ease:'sine.inOut'},1.15)
   .to(P,{v:8,duration:.9,ease:'none'},2.25).to(P,{v:3.2,duration:.8,ease:'sine.inOut'},3.3)
   .to(sg,{x:sx,rotate:-6,duration:.3,ease:'sine.out'},0)
