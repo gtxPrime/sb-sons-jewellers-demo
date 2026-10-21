@@ -586,3 +586,4 @@ html.light #hero h1 em,html.light #hero h1 .gold-text{background:linear-gradient
 .igc img{width:100%;height:100%;object-fit:cover}
 .rv,.pillar{border-radius:14px;padding-top:40px}
 .ed::after{background:linear-gradient(180deg,transparent 55%,#070c1aee)}
+.igc{display:block;line-height:0}.igc img{display:block}
