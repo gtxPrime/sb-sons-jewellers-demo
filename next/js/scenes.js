@@ -11,7 +11,7 @@ function go(){
  const tl=gsap.timeline({scrollTrigger:ST({trigger:document.body,start:'top top',end:'bottom bottom',scrub:1.2})});
  xs.forEach((x,i)=>tl.to(g,{x:()=>x*W(),y:()=>ys[i]*innerHeight,rotateY:i*180,rotate:i%2?18:-18,scale:i%2?1.5:.6,duration:1,ease:'sine.inOut'}));
  gsap.set(g,{x:()=>.9*W(),y:()=>.28*innerHeight});
- ScrollTrigger.create({trigger:'#story',start:'top 60%',end:'bottom 40%',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.4,overwrite:true})});
+ ScrollTrigger.create({trigger:'#story',start:'top 70%',end:()=>'top -'+Math.round(innerHeight*3.2+40),onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.4,overwrite:true})});
  ScrollTrigger.create({trigger:'#hero',start:'bottom 80%',onEnter:()=>gsap.to(g,{opacity:.85,duration:.6}),onLeaveBack:()=>gsap.to(g,{opacity:0,duration:.4})});
  ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.3,overwrite:true})});
  ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.85,duration:.4})});
