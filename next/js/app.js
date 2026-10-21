@@ -94,7 +94,7 @@ function boot(){
     .to('#loader .lp.b',{yPercent:101,duration:.95,ease:'power4.inOut'},'<');
   }})})});
  /* hero parallax out */
- gsap.to('.hx-l',{yPercent:-10,opacity:.2,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+ gsap.to('.hx-l',{yPercent:-6,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
  /* story */
  const lines=$$('.story-line'),st=gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'+=320%',pin:true,scrub:.6}});
  st.fromTo('.story-ring',{scale:.3,opacity:0},{scale:1,opacity:1,duration:lines.length*1.2,ease:'none',stagger:.2},0);
