@@ -224,3 +224,15 @@ footer .brand{justify-content:center;margin-bottom:14px}
 .vmap{border-radius:22px;overflow:hidden;height:min(620px,70vh);border:1px solid #d9b25f33;min-height:340px}
 .vmap iframe{width:100%;height:100%;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.6) brightness(.95)}
 #hero .hero-in .rate-chip{margin-top:30px}
+#insta{padding:clamp(70px,9vw,120px) 0;background:var(--navy);overflow:hidden}
+#insta h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,76px);line-height:1.05;margin:12px 0 8px}
+.mq{overflow:hidden;margin-top:26px}
+.mqt{display:flex;gap:16px;width:max-content}
+.mqt.a{animation:mq 70s linear infinite}
+.mqt.b{animation:mq 80s linear infinite reverse}
+.mq:hover .mqt{animation-play-state:paused}
+.igc{flex:0 0 auto;height:clamp(230px,34vw,400px);border-radius:16px;overflow:hidden;border:1px solid #d9b25f33}
+.igc img{height:100%;width:auto;transition:transform .6s var(--ease)}
+.igc:hover img{transform:scale(1.05)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.mq{overflow-x:auto}.mqt{animation:none!important}}
