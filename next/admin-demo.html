@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DEMO admin | S B &amp; Sons feedback</title><meta name="robots" content="noindex">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=41"><link rel="stylesheet" href="css/feedback.css?v=41">
+<style>.adm{max-width:1100px;margin:0 auto;padding:20px}.big{padding:16px 18px;border:2px dashed #d9b25f;border-radius:14px;background:#d9b25f14;color:var(--gold2);margin:14px 0 22px;line-height:1.6}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:18px 0}.kp div{padding:18px;border:1px solid #d9b25f33;border-radius:14px;background:#ffffff05}.kp b{display:block;font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--gold2)}
+.tw{overflow:auto;border:1px solid #d9b25f33;border-radius:14px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:10px 12px;border-bottom:1px solid #ffffff14;text-align:left;vertical-align:top;white-space:nowrap}td.w{white-space:normal;min-width:260px}th{color:var(--gold);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.demo{display:inline-block;padding:2px 8px;border-radius:99px;background:#d9b25f33;color:var(--gold2);font-size:11px}.bars div{display:flex;gap:10px;align-items:center;margin:6px 0;font-size:13px}.bars i{display:block;height:8px;background:var(--gold);border-radius:4px}</style></head><body class="fb">
+<header class="fbh"><a href="./" class="brand"><img src="img/crest.png" alt="" width="42" height="40"><span><b>S B &amp; SONS</b><small>JEWELLERS</small></span></a><a class="back" href="feedback.html">Back to survey</a></header>
+<div class="adm"><h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,6vw,64px)">Feedback admin <span class="demo">DEMO</span></h1>
+<div class="big"><b>DEMO ONLY.</b> Every row below is fake sample data made up for testing. There is no login here and nothing real is stored. Entries you submit on the demo survey from this browser also appear (marked "Your test"). The real admin lives on the showroom's own server, behind a password.</div>
+<div class="row"><button class="btn gold" id="dl">Download CSV (demo data)</button><button class="btn ghost" id="clr">Clear my test entries</button></div>
+<div class="kp"><div><b id="k1">0</b>Entries</div><div><b id="k2">0</b>Average rating</div><div><b id="k3">0</b>OK to contact</div></div>
+<h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:20px 0 6px">Where they heard of us</h2><div class="bars" id="bars"></div>
+<h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:26px 0 10px">All entries</h2><div class="tw"><table id="t"></table></div></div>
+<script>
+const F=['Friends','Family','Newspaper','Radio','Banners or hoardings','Instagram','Facebook','Google search','Passing by'];
+const P=['Bridal','Festival','Gift','Daily wear','Investment'],B=['Gold jewellery','Diamond jewellery','Silver'];
+const ST=[['polite','helpful'],['knowledgeable','patient'],['friendly'],['hurried'],['polite','knowledgeable']],SH=[['clean','well lit'],['spacious'],['crowded'],['welcoming','easy to browse']];
+const rt=[5,5,4,5,3,4,5,2,5,4,5,4];
+const demo=rt.map((r,i)=>({id:'DEMO-'+(i+1),ts:new Date(Date.now()-i*86400000*1.7).toISOString(),how:[F[i%F.length]],purpose:[P[i%P.length]],bought:[B[i%B.length]],rating:r,staff:ST[i%ST.length],store:SH[i%SH.length],collection:['wide'],trust:i%3?['transparent billing']:[],location:['easy to find'],comment:'',draft:'Demo sample review text '+(i+1)+'.',name:'Demo Customer '+(i+1),phone:i%2?'9000000'+String(100+i):'',area:['Sikandra','Kamla Nagar','Sanjay Place','Tajganj'][i%4],contact_ok:i%2?true:false,demo:'DEMO'}));
+let mine=[];try{mine=JSON.parse(localStorage.getItem('sb_demo_feedback')||'[]').map((d,i)=>({...d,id:'YOUR-TEST-'+(i+1),demo:'Your test'}))}catch(e){}
+const all=[...mine,...demo];
+const j=a=>Array.isArray(a)?a.join('; '):a||'';
+const cols=['id','demo','ts','rating','how','purpose','bought','staff','store','collection','trust','location','comment','draft','name','phone','area','contact_ok'];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('t').innerHTML='<tr>'+['When','Source','Rating','Heard via','Bought','Staff','Name','Phone','OK to contact','Review draft'].map(h=>'<th>'+h+'</th>').join('')+'</tr>'+all.map(r=>'<tr><td>'+esc(new Date(r.ts).toLocaleDateString())+'</td><td><span class="demo">'+esc(r.demo)+'</span></td><td>'+esc(r.rating||'')+'</td><td>'+esc(j(r.how))+'</td><td>'+esc(j(r.bought))+'</td><td>'+esc(j(r.staff))+'</td><td>'+esc(r.name||'')+'</td><td>'+esc(r.phone||'')+'</td><td>'+(r.contact_ok?'Yes':'No')+'</td><td class="w">'+esc(r.draft||'')+'</td></tr>').join('');
+const rs=all.filter(r=>r.rating);k1.textContent=all.length;k2.textContent=(rs.reduce((a,r)=>a+r.rating,0)/rs.length).toFixed(1);k3.textContent=all.filter(r=>r.contact_ok).length;
+const c={};all.forEach(r=>(r.how||[]).forEach(h=>c[h]=(c[h]||0)+1));const mx=Math.max(...Object.values(c));
+bars.innerHTML=Object.entries(c).sort((a,b)=>b[1]-a[1]).map(([k,v])=>'<div><span style="width:150px">'+esc(k)+'</span><i style="width:'+Math.round(v/mx*240)+'px"></i>'+v+'</div>').join('');
+const q=v=>{v=String(v==null?'':v);if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+dl.onclick=()=>{const rows=[cols.join(',')].concat(all.map(r=>cols.map(k=>q(Array.isArray(r[k])?r[k].join('; '):r[k])).join(',')));const b=new Blob(['\ufeff'+rows.join('\r\n')],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sb-feedback-DEMO.csv';a.click()};
+clr.onclick=()=>{localStorage.removeItem('sb_demo_feedback');location.reload()};
+</script></body></html>
