@@ -18,16 +18,11 @@ function go(){
  /* 2. story: the diamond turns from side view to top view and back (image sequence), drifting opposite each chapter */
  const sg=$('#sgem'),fr=$$('#sgem .f'),sx=mobile?0:innerWidth*.27;
  gsap.set(sg,{opacity:0,scale:.6,xPercent:-50,yPercent:-50,left:'50%',top:'50%'});
- gsap.set(fr,{opacity:0});gsap.set(fr[0],{opacity:1});
- const rot=gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8})});
+ const P={v:0};gsap.set(fr,{opacity:0});const setF=()=>{const v=P.v,i=Math.min(7,Math.floor(v)),f=v-i;fr.forEach((e,k)=>{e.style.opacity=k===i?1-f:k===i+1?f:0})};setF();
+ const rot=gsap.timeline({onUpdate:setF,scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8})});
  rot.to(sg,{opacity:mobile?.4:1,scale:1,duration:.4,ease:'power2.out'},0)
-  /* side -> tilt -> top -> tilt -> side -> top */
-  .to(fr[1],{opacity:1,duration:.5},.35).to(fr[0],{opacity:0,duration:.5},.35)
-  .to(fr[2],{opacity:1,duration:.5},.9).to(fr[1],{opacity:0,duration:.5},.9)
-  .to(fr[1],{opacity:1,duration:.5},1.6).to(fr[2],{opacity:0,duration:.5},1.6)
-  .to(fr[0],{opacity:1,duration:.5},2.1).to(fr[1],{opacity:0,duration:.5},2.1)
-  .to(fr[1],{opacity:1,duration:.5},2.6).to(fr[0],{opacity:0,duration:.5},2.6)
-  .to(fr[2],{opacity:1,duration:.5},3.1).to(fr[1],{opacity:0,duration:.5},3.1)
+  .to(P,{v:2.6,duration:.55,ease:'sine.inOut'},.35).to(P,{v:5,duration:.8,ease:'sine.inOut'},1.0)
+  .to(P,{v:8,duration:.8,ease:'none'},1.85).to(P,{v:3,duration:.6,ease:'sine.inOut'},2.75)
   .to(sg,{x:sx,rotate:-6,duration:.3,ease:'sine.out'},0)
   .to(sg,{x:-sx,rotate:8,duration:.5,ease:'sine.inOut'},.85)
   .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.85)
