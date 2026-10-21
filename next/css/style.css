@@ -410,3 +410,7 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 .story-gem{will-change:transform,opacity;contain:layout paint}
 .story-gem img.f{will-change:opacity;aspect-ratio:1;height:auto;transform:translateZ(0)}
 .tex{mix-blend-mode:normal!important;opacity:.14!important}
+/* v67 perf: living backgrounds are painted once (no per-frame repaint), solid bars instead of backdrop blur */
+.live::before,.live::after,.live.dust{animation:none!important}
+nav.top.solid,#quick,.rate-chip,.card .tag{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#070c1af0}
+.live{contain:paint}
