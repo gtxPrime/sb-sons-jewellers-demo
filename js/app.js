@@ -9,14 +9,32 @@ $('#offerCta').href=wa('Hello, please share the current Diwali offers.');
 $('#offerBox').textContent=S.offerText;
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),1800)}
 $('#navWA').href=wa('Hello S B & Sons Jewellers, I would like to enquire about your jewellery.');
-/* shop */
-function renderGrid(f){
- const list=S.products.filter(p=>f==='All'||p.cat===f);
- $('#grid').innerHTML=list.map(p=>`<article class="card"><div class="ph"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>${p.tag?`<span class="tag">${p.tag}</span>`:''}<div class="info"><h3>${p.name}</h3><p class="meta">${p.meta}</p><div class="row"><a class="add" target="_blank" rel="noopener" href="${wa('Hello S B & Sons Jewellers, I would like to enquire about: '+p.name)}">Enquire on WhatsApp</a></div></div></article>`).join('');
- if(window.gsap&&!reduce)gsap.from('#grid .card',{y:40,opacity:0,duration:.7,stagger:.07,ease:'power3.out'});
- if(window.ScrollTrigger)ScrollTrigger.refresh();
-}
-renderGrid('All');
+/* data-wa links */
+$$('[data-wa]').forEach(e=>e.href=wa(e.dataset.wa));
+/* slider */
+(function(){
+ let f='All',idx=0,list=[],drag=null;
+ const st=$('#slStage'),pr=$('#slPrev'),nx=$('#slNext'),sl=$('#sl');
+ function build(){list=S.products.filter(p=>f==='All'||p.cat===f);idx=Math.min(idx,list.length-1);
+  st.innerHTML=list.map((p,i)=>`<div class="sl-card" data-i="${i}"><img src="${p.img}" alt="${p.name} (AI-generated demo image)" loading="lazy" draggable="false"></div>`).join('');
+  $('#slDots').innerHTML=list.map((p,i)=>`<i data-i="${i}"></i>`).join('');render()}
+ function render(){[...st.children].forEach((c,i)=>{const o=i-idx,a=Math.abs(o);c.style.setProperty('--o',o);c.style.setProperty('--a',Math.min(a,3));c.classList.toggle('act',o===0);c.classList.toggle('hid',a>3)});
+  [...$('#slDots').children].forEach((d,i)=>d.classList.toggle('on',i===idx));
+  const p=list[idx];if(!p)return;$('#slName').textContent=p.name;$('#slMeta').textContent=p.meta+' ('+p.cat+')';$('#slCount').textContent=String(idx+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0');
+  $('#slEnq').href=wa('Hello S B & Sons Jewellers, I would like to enquire about: '+p.name)}
+ const go=n=>{idx=(n+list.length)%list.length;render()};
+ pr.onclick=()=>go(idx-1);nx.onclick=()=>go(idx+1);
+ st.onclick=e=>{if(drag&&drag.moved)return;const c=e.target.closest('.sl-card');if(c)go(+c.dataset.i)};
+ $('#slDots').onclick=e=>{const d=e.target.closest('i');if(d)go(+d.dataset.i)};
+ sl.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(idx-1);if(e.key==='ArrowRight')go(idx+1)});
+ sl.addEventListener('pointerdown',e=>{if(e.target.closest('.sl-a'))return;drag={x:e.clientX,moved:false}});
+ addEventListener('pointermove',e=>{if(drag&&Math.abs(e.clientX-drag.x)>8)drag.moved=true});
+ addEventListener('pointerup',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(Math.abs(dx)>50)go(idx+(dx<0?1:-1));setTimeout(()=>drag=null,30)});
+ function setF(v){f=v;idx=0;$$('.sl-tabs button').forEach(b=>b.classList.toggle('on',b.dataset.f===v));build()}
+ $$('.sl-tabs button').forEach(b=>b.onclick=()=>setF(b.dataset.f));
+ $$('.cpanel[data-f]').forEach(c=>c.addEventListener('click',()=>setF(c.dataset.f)));
+ build();
+})();
 /* misc */
 $$('[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy);toast('Copied')});
 $('#copyNum').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText('+91 81265 60338');toast('Number copied')};

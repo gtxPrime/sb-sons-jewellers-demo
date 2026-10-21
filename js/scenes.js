@@ -11,10 +11,10 @@ function go(){
  const tl=gsap.timeline({scrollTrigger:ST({trigger:document.body,start:'top top',end:'bottom bottom',scrub:1.2})});
  xs.forEach((x,i)=>tl.to(g,{x:()=>x*W(),y:()=>ys[i]*innerHeight,rotateY:i*180,rotate:i%2?18:-18,scale:i%2?1.5:.6,duration:1,ease:'sine.inOut'}));
  gsap.set(g,{x:()=>.9*W(),y:()=>.28*innerHeight});
- ScrollTrigger.create({trigger:'#story',start:'top 60%',end:'bottom 40%',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.6,duration:.4,overwrite:true})});
- ScrollTrigger.create({trigger:'#hero',start:'bottom 80%',onEnter:()=>gsap.to(g,{opacity:.6,duration:.6}),onLeaveBack:()=>gsap.to(g,{opacity:0,duration:.4})});
- ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.6,duration:.3,overwrite:true})});
- ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.6,duration:.4})});
+ ScrollTrigger.create({trigger:'#story',start:'top 60%',end:'bottom 40%',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.4,overwrite:true})});
+ ScrollTrigger.create({trigger:'#hero',start:'bottom 80%',onEnter:()=>gsap.to(g,{opacity:.85,duration:.6}),onLeaveBack:()=>gsap.to(g,{opacity:0,duration:.4})});
+ ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.3,overwrite:true})});
+ ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.85,duration:.4})});
  /* 2. story: giant diamond grows, spins and fills the frame behind alternating chapters */
  gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.6})})
   .fromTo('#sgem',{opacity:0,scale:.15,rotate:-40},{opacity:.55,scale:mobile?1.6:2.2,rotate:40,ease:'none',duration:1});
@@ -28,7 +28,7 @@ function go(){
  gsap.from('#offerBox',{x:-120,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#offerBox',start:'top 90%'}});
  gsap.from('#offerCta',{x:120,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#offerCta',start:'top 95%'}});
  /* 5. gallery cards: alternate sides, tilt in */
- ScrollTrigger.batch('#grid .card',{start:'top 92%',once:true,onEnter:b=>b.forEach((c,i)=>gsap.fromTo(c,{x:i%2?60:-60,rotate:i%2?4:-4,opacity:0,y:40},{x:0,rotate:0,opacity:1,y:0,duration:.9,delay:i*.06,ease:'power3.out',overwrite:true}))});
+ gsap.from('#sl',{y:90,opacity:0,scale:.92,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#sl',start:'top 88%'}});
  /* 6. showroom: frame opens to full bleed while the photo pulls back */
  gsap.fromTo('.sr-bg',{clipPath:'inset(18% 10% 18% 10% round 28px)'},{clipPath:'inset(0% 0% 0% 0% round 0px)',ease:'none',scrollTrigger:ST({trigger:'#showroom',start:'top 85%',end:'top 10%'})});
  /* 7. reviews: cards fan in from three directions */
