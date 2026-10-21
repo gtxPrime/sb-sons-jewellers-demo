@@ -624,3 +624,46 @@ html.light .hx-eye,html.light .hx-v{color:#7a5410}
 
 /* v99 diwali circle */
 .dw-img{width:min(340px,74vw)!important;aspect-ratio:1/1!important;border-radius:50%!important}
+
+/* v103 hero: the arch doorway */
+#hero.hz,html.light #hero.hz{--ax:33vw;--at:13vh;--ab:9vh;position:relative;height:100vh!important;height:100svh!important;min-height:0!important;padding:0!important;display:block;overflow:hidden;text-align:center;color:#f4ecd8;background:radial-gradient(ellipse at 50% 55%,#1a2755 0%,#0a1128 52%,#04070f 100%)}
+#hero.hz #sparkle{z-index:1}
+.hz-echo{position:absolute;left:var(--ax);right:var(--ax);top:var(--at);bottom:var(--ab);border:1px solid #d9b25f44;border-radius:50vw 50vw 0 0;z-index:1;pointer-events:none}
+.hz-echo.e1{transform:scale(1.14,1.07);transform-origin:50% 100%;opacity:.55}
+.hz-echo.e2{transform:scale(1.3,1.14);transform-origin:50% 100%;opacity:.28}
+.hz-thread{position:absolute;left:50%;top:0;height:var(--at);width:2px;margin-left:-1px;z-index:3;overflow:visible}
+.hz-bead{position:absolute;left:50%;top:calc(var(--at) - 5px);width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#f2d896;box-shadow:0 0 18px 6px #f2d896aa;z-index:4}
+.hz-arch{position:absolute;left:var(--ax);right:var(--ax);top:var(--at);bottom:var(--ab);border-radius:50vw 50vw 0 0;overflow:hidden;z-index:2;outline:1px solid #d9b25f;outline-offset:10px;box-shadow:0 40px 120px #000c;background:#0a1128}
+.hz-arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hz-i2{opacity:0}
+.hz-shade{position:absolute;inset:0;background:linear-gradient(#0a112800 40%,#0a1128b0);pointer-events:none}
+.hz .hz-mono{position:absolute;z-index:6;left:50%;top:calc(var(--at) + 18px);transform:translateX(-50%);width:62px!important;margin:0!important}
+.hz-h{position:absolute;z-index:5;left:0;right:0;top:50%;transform:translateY(-50%);margin:0;display:flex;justify-content:space-between;padding:0 3.2vw;pointer-events:none;font-size:clamp(46px,min(6.6vw,12vh),112px);line-height:1;letter-spacing:-.01em;text-align:left}
+.hz-h>span{display:block;max-width:calc(var(--ax) + 3vw)}
+.hz-h .hz-l{text-align:right}.hz-h .hz-r{text-align:left}
+.hz-h span span{display:block;overflow:hidden;padding:.04em .08em .14em;margin:-.04em -.08em -.14em}
+.hz-h i{display:block;font-style:normal;color:#f4ecd8;text-shadow:0 4px 40px #000a}
+.hz-h em{display:block;font-style:italic;font-weight:400}
+html.light .hz-h em.gold-text,html.light .hz h1 .gold-text{background:linear-gradient(100deg,#f7dc96,#d9b25f 50%,#f2d896);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+html.light #hero.hz p.sub,html.light #hero.hz .sub,html.light #hero.hz h1,html.light #hero.hz h1 i{color:#f4ecd8;text-shadow:none}
+.hz-ui{position:absolute;z-index:6;left:0;right:0;bottom:1.6vh;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 3.2vw}
+.hz-ui .sub{margin:0!important;max-width:27vw;text-align:left;font-size:13px;color:#e9dfc8cc}
+.hz-ui .hero-cta{display:flex;gap:12px}
+.hz-ui .rate-chip{margin:0!important}
+.hz-in{position:absolute;z-index:6;left:50%;bottom:16vh;transform:translateX(-50%);margin:0;text-align:center;opacity:0;font:italic 400 clamp(26px,3.6vw,52px)/1.1 "Cormorant Garamond",serif;color:#f4ecd8;text-shadow:0 4px 40px #000}
+.hz-in small{display:block;font:500 11px Inter,sans-serif;letter-spacing:.4em;text-transform:uppercase;color:#f2d896;margin-bottom:10px}
+.hz .scroll-cue{z-index:6;bottom:auto;top:calc(var(--at) + 100px)}
+body.lock #hero .hz-h,body.lock #hero .hz-ui{visibility:hidden}
+@media(max-width:800px){
+ #hero.hz,html.light #hero.hz{--ax:13vw;--at:23vh;--ab:21vh}
+ .hz-h{top:0;bottom:0;transform:none;display:block;padding:0;font-size:clamp(38px,12vw,60px)}
+ .hz-h>span{position:absolute;max-width:none;left:0;right:0;text-align:center!important}
+ .hz-h .hz-l{top:calc(var(--at) - 14vh)}.hz-h .hz-l span{display:inline}
+ .hz-h .hz-l>span{display:inline-block;margin:0 .15em!important;overflow:hidden}
+ .hz-h .hz-r{bottom:calc(var(--ab) - 12vh)}.hz-h .hz-r>span{display:inline-block;margin:0 .15em!important}
+ .hz-ui{flex-direction:column;padding:0 18px;bottom:14px;gap:10px}
+ .hz-ui .sub{display:none}.hz-ui .rate-chip{display:none}
+ .hz .hz-mono{width:44px!important;top:calc(var(--at) + 10px)}
+ .hz-thread{height:var(--at)}
+ .hz .scroll-cue{display:none}
+}

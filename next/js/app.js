@@ -94,7 +94,7 @@ function boot(){
     .to('#loader .lp.b',{yPercent:101,duration:.95,ease:'power4.inOut'},'<');
   }})})});
  /* hero parallax out */
- gsap.to('.hx-l',{yPercent:-6,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+ gsap.to('.hz-none',{scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
  /* story */
  const lines=$$('.story-line'),st=gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'+=320%',pin:true,scrub:.6}});
  st.fromTo('.story-ring',{scale:.3,opacity:0},{scale:1,opacity:1,duration:lines.length*1.2,ease:'none',stagger:.2},0);
@@ -158,4 +158,27 @@ document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i)
  gsap.from('.hx-c',{scale:.3,opacity:0,duration:1.1,ease:'back.out(1.4)',delay:1.2});
  [['.hx-a',-6],['.hx-b',-16],['.hx-c',-24],['.hx-ring',-10]].forEach(([s,y])=>gsap.to(s,{yPercent:y*1.6,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}}));
  if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hx-a',{x:x*-14,y:y*-10,duration:1});gsap.to('.hx-b',{x:x*22,duration:1});gsap.to('.hx-c',{x:x*-30,y:y*20,duration:1});gsap.to('.h-big',{x:x*30,duration:1.4})});
+})();
+
+/* v103 hero: step through the arch (pinned, scrubbed) */
+(function(){if(!window.gsap||!window.ScrollTrigger||document.documentElement.classList.contains('noanim'))return;
+ const A=document.getElementById('hzA');if(!A)return;const mob=innerWidth<=800;
+ const th=document.querySelector('.hz-thread line');if(th){const L=th.getTotalLength?th.getTotalLength():100;}
+ gsap.from('.hz-thread',{scaleY:0,transformOrigin:'50% 0',duration:1.4,ease:'power3.out',delay:.3});
+ gsap.from('.hz-bead',{opacity:0,scale:0,duration:.8,delay:1.4});
+ gsap.from(A,{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'power3.out',delay:.6});
+ gsap.from('.hz-i1',{scale:1.3,duration:2.2,ease:'power2.out',delay:.6});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=130%',pin:true,scrub:.7,anticipatePin:1}});
+ tl.to('.hz-ui,.scroll-cue,.hz-mono',{opacity:0,y:20,duration:.15},0)
+   .to('.hz-l',{xPercent:-120,opacity:0,duration:.6,ease:'power2.in'},0)
+   .to('.hz-r',{xPercent:120,opacity:0,duration:.6,ease:'power2.in'},0)
+   .to(A,{left:0,right:0,top:0,bottom:0,borderRadius:0,duration:1,ease:'power2.inOut'},0)
+   .to('.hz-echo',{opacity:0,scale:1.8,duration:.8},0)
+   .to('.hz-thread,.hz-bead',{opacity:0,duration:.2},0)
+   .to(A,{outlineOffset:0,outlineColor:'#d9b25f00',duration:.5},0)
+   .to('.hz-i1',{opacity:0,scale:1.15,duration:.5,ease:'none'},.35)
+   .fromTo('.hz-i2',{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.7,ease:'none'},.3)
+   .to('.hz-shade',{opacity:1,duration:.3},.6)
+   .fromTo('.hz-in',{opacity:0,y:30},{opacity:1,y:0,duration:.35},.75)
+   .to({},{duration:.25});
 })();
