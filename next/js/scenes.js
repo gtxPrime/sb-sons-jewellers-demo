@@ -21,7 +21,7 @@ function go(){
  /* thread path through the card centres */
  const pts=mobile?[[500,60],[420,300],[580,520],[440,740],[500,960]]:[[720,40],[400,260],[270,500],[720,600],[500,960]];
  pth.setAttribute('d','M'+pts[0]+' C'+pts[0][0]+','+(pts[0][1]+200)+' '+pts[1][0]+','+(pts[1][1]-200)+' '+pts[1]+' S'+pts[2][0]+','+(pts[2][1]-150)+' '+pts[2]+' S'+pts[3][0]+','+(pts[3][1]-150)+' '+pts[3]+' S'+pts[4][0]+','+(pts[4][1]-150)+' '+pts[4]);
- const L=pth.getTotalLength();pth.style.strokeDasharray=L;pth.style.strokeDashoffset=L;
+ const L=pth.getTotalLength();pth.style.strokeDasharray=L+' '+L*3;pth.style.strokeDashoffset=L;
  cs.forEach((c,i)=>{c.style.left=(X[i]*100)+'%';c.style.top=(Y[i]*100)+'%'});
  gsap.set(cs,{xPercent:-50,yPercent:-50,clipPath:'inset(100% 0% 0% 0% round 999px 999px 0 0)'});gsap.set(im,{scale:1.3,yPercent:8});
  const P={v:0};
