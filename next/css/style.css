@@ -389,3 +389,4 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 #sgem{z-index:1}.story-line{z-index:2}
 #sgem .glint{position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 40%,#ffffff40 50%,transparent 60%) 120% 0/260% 100%;-webkit-mask:radial-gradient(closest-side,#000 55%,transparent 100%);mask:radial-gradient(closest-side,#000 55%,transparent 100%)}
 #sgem::after{content:"";position:absolute;left:15%;right:15%;bottom:-6%;height:12%;background:radial-gradient(closest-side,#e8c87733,transparent);filter:blur(10px);z-index:0}
+@media(max-width:700px){#story .ghost{display:none}}
