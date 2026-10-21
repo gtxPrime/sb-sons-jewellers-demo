@@ -40,7 +40,7 @@ function go(){
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  /* 4. diwali: arch opens, countdown rises, offer and CTA enter from opposite sides */
- gsap.fromTo('.dw-img',{clipPath:'inset(40% 30% 0% 30% round 200px 200px 0 0)',scale:.8},{clipPath:'inset(0% 0% 0% 0% round 200px 200px 18px 18px)',scale:1,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'top 35%'})});
+ gsap.fromTo('.dw-img',{clipPath:'circle(0% at 50% 50%)',scale:.9},{clipPath:'circle(72% at 50% 50%)',scale:1,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'top 35%'})});
  gsap.from('.dw-img img',{scale:1.5,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'bottom 40%'})});
  gsap.from('#count>div',{y:90,opacity:0,rotateX:-70,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'#count',start:'top 90%'}});
  gsap.from('#offerBox',{x:-120,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#offerBox',start:'top 90%'}});
