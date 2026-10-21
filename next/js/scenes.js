@@ -21,14 +21,15 @@ function go(){
  const P={v:0};gsap.set(fr,{opacity:0});const setF=()=>{const v=P.v,i=Math.min(7,Math.floor(v)),f=v-i;fr.forEach((e,k)=>{e.style.opacity=k===i?1-f:k===i+1?f:0})};setF();
  const rot=gsap.timeline({onUpdate:setF,scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8})});
  rot.to(sg,{opacity:mobile?.4:1,scale:1,duration:.4,ease:'power2.out'},0)
-  .to(P,{v:2.6,duration:.55,ease:'sine.inOut'},.35).to(P,{v:5,duration:.8,ease:'sine.inOut'},1.0)
-  .to(P,{v:8,duration:.8,ease:'none'},1.85).to(P,{v:3,duration:.6,ease:'sine.inOut'},2.75)
+  .to(P,{v:2.6,duration:.7,ease:'sine.inOut'},.3).to(P,{v:5,duration:.9,ease:'sine.inOut'},1.15)
+  .to(P,{v:8,duration:.9,ease:'none'},2.25).to(P,{v:3.2,duration:.8,ease:'sine.inOut'},3.3)
   .to(sg,{x:sx,rotate:-6,duration:.3,ease:'sine.out'},0)
   .to(sg,{x:-sx,rotate:8,duration:.5,ease:'sine.inOut'},.85)
-  .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.85)
-  .to(sg,{x:-sx,rotate:5,scale:1.08,duration:.5,ease:'sine.inOut'},2.85);
+  .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.95)
+  .to(sg,{x:-sx,rotate:5,duration:.5,ease:'sine.inOut'},3.05)
+  .to({},{duration:.001},4.15);
  const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
- [0,.9,1.85,2.85].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.35,ease:'power2.out'},t+.05);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.7)});
+ [0,1.1,2.2,3.3].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.4,ease:'power2.out'},t);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.85)});
  gsap.to('#sgem .glint',{backgroundPosition:'-160% 0',ease:'none',scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:1})});
  /* 3. word bands slide against each other */
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
