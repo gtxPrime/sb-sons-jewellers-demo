@@ -31,7 +31,7 @@ function draft(){
  const more=$('#more').value.trim();if(more)out.push(more);
  const close={5:['A great experience. I would recommend them.','Very happy with my visit.'],4:['A good experience overall.','Happy with my visit.'],3:['An average experience overall.','It was an okay visit.'],2:['I was not fully satisfied with my visit.'],1:['I was not satisfied with my visit.']}[rating];
  if(close)out.push(pick(close));
- return out.join(' ').replace(/(^|\. )([a-z])/g,(m,a,c)=>a+c.toUpperCase());
+ return out.join(' ').replace(/instagram/g,'Instagram').replace(/facebook/g,'Facebook').replace(/google search/g,'a Google search').replace(/(^|\. )([a-z])/g,(m,a,c)=>a+c.toUpperCase());
 }
 function fmt(){const p=$('#ph').value.replace(/\D/g,'');return p}
 function data(){return {ts:new Date().toISOString(),how:[...sel.how],purpose:[...sel.purpose],bought:[...sel.bought],rating,staff:[...sel.staff],store:[...sel.store],collection:[...sel.collection],trust:[...sel.trust],location:[...sel.location],comment:$('#more').value.trim(),draft:$('#draft').value,name:$('#nm').value.trim(),phone:fmt(),area:$('#area').value.trim(),contact_ok:$('#consent').checked&&!!fmt(),website:$('#f .hp').value}}
