@@ -483,3 +483,11 @@ html.light .tabs button.on,html.light .sl-tabs button.on{color:#1b1405}
 html.light .cpanel .tag,html.light .cpanel small{color:#f2d896}
 html.light footer{background:#070c1a}
 @media(max-width:560px){nav.top .igl{display:none}nav.top .actions{gap:8px}#themeBtn{width:36px;height:36px}}
+/* v76 hero fixes: no clipped glyphs, visible photo in light theme */
+#hero h1{font-size:clamp(44px,min(9vw,14vh),140px);line-height:1.05}
+#hero h1 span{padding:.04em .08em .16em;margin:-.04em -.08em -.16em}
+#hero h1 em{padding-bottom:.16em;margin-bottom:-.1em;overflow:visible}
+html.light #hero{background:linear-gradient(#fbf6ea66,#fbf6ea99 55%,#fbf6eadd),url(../img/ai/ai-hero.jpg) center/cover,#fbf6ea}
+html.light #hero h1,html.light #hero p.sub,html.light #hero .sub{text-shadow:0 0 28px #fbf6eacc,0 0 6px #fbf6ea99}
+html.light #hero p.sub{color:#2f2410}
+@media(max-width:700px){#hero{min-height:100svh;height:auto;padding:84px 0 96px}}
