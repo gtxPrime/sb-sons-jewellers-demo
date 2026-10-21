@@ -485,3 +485,4 @@ html.light footer{background:#070c1a}
 .story-gem.is3d{mix-blend-mode:normal}
 .story-gem.is3d::after,.story-gem.is3d .glint{display:none}
 .story-gem.is3d canvas{filter:drop-shadow(0 18px 30px #00000066)}
+@media(max-width:560px){nav.top .igl{display:none}nav.top .actions{gap:8px}#themeBtn{width:36px;height:36px}}
