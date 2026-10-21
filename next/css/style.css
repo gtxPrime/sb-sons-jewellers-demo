@@ -688,3 +688,5 @@ body.lock #hero .hz-h,body.lock #hero .hz-ui{visibility:hidden}
  .hz-ui{bottom:76px}
 }
 html.light nav.top:not(.solid),html.light nav.top:not(.solid) a:not(.btn),html.light nav.top:not(.solid) .brand,html.light nav.top:not(.solid) .brand *{color:#f4ecd8}
+#hero.hz .hz-ui .sub{max-width:310px;font-size:13px;line-height:1.5}
+html #hero.hz .hz-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c36f 50%,#f9e4ae)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:none!important;opacity:1}
