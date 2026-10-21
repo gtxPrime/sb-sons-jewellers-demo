@@ -27,7 +27,7 @@ function go(){
   .to(sg,{x:-sx,rotate:8,duration:.5,ease:'sine.inOut'},.85)
   .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.95)
   .to(sg,{x:-sx,rotate:5,duration:.5,ease:'sine.inOut'},3.05)
-  .to({},{duration:.001},4.15);
+  .to({},{duration:.001},4.5);
  const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
  [0,1.1,2.2,3.3].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.4,ease:'power2.out'},t);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.85)});
  gsap.to('#sgem .glint',{backgroundPosition:'-160% 0',ease:'none',scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:1})});
