@@ -81,7 +81,7 @@ function boot(){
  ScrollTrigger.create({start:60,onUpdate:s=>$('#nav').classList.toggle('solid',s.scroll()>60)});
  if(reduce){$('#loader').remove();document.body.classList.remove('lock');document.documentElement.classList.add('noanim');return}
  /* loader: real progress */
- gsap.set('#hero .hero-in>*,.scroll-cue',{opacity:0});
+ gsap.set('#hero .hero-in>*:not(.hx-l):not(.hx-r),.scroll-cue',{opacity:0});
  const pc=$('#pct'),pr={p:0};
  const srcs=['img/crest.png','img/ai/ai-hero.jpg','img/real/showroom.jpg'];
  const loaded=Promise.race([Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(()=>document.fonts?document.fonts.ready:0),new Promise(r=>setTimeout(r,3500))]);
