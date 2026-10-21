@@ -482,3 +482,4 @@ html.light .tabs button,html.light .sl-tabs button{color:#6a4d10;border-color:#b
 html.light .tabs button.on,html.light .sl-tabs button.on{color:#1b1405}
 html.light .cpanel .tag,html.light .cpanel small{color:#f2d896}
 html.light footer{background:#070c1a}
+@media(max-width:560px){nav.top .igl{display:none}nav.top .actions{gap:8px}#themeBtn{width:36px;height:36px}}
