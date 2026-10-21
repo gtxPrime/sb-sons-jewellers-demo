@@ -729,3 +729,6 @@ html #hero.hf .hf-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
 }
 .hf-h .hf-sub{opacity:1!important;color:#f2d896!important;-webkit-text-fill-color:#f2d896!important;font-size:clamp(17px,1.8vw,28px)!important}
 .hf-disc{background:radial-gradient(circle at 34% 26%,#2e3d78 0%,#18244f 48%,#0c1431 100%)}
+#hero.hf .hz-in{bottom:4vh}
+#hero.hf .hz-in{text-shadow:0 2px 24px #000,0 0 6px #000}
+@media(max-width:800px){#hero.hf .hz-in{bottom:5vh}}

@@ -197,7 +197,7 @@ document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i)
  if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hf-wc',{x:x*-26,y:y*-16,duration:1.2});gsap.to('.hf-wd',{x:x*50,y:y*30,duration:1.2});gsap.to('.hf-h',{x:x*18,duration:1.4});gsap.to('.hf-glow',{x:x*-60,y:y*-40,duration:1.6})});
  const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=110%',pin:true,scrub:.7,anticipatePin:1}});
  tl.to('.hz-ui,.scroll-cue',{opacity:0,y:20,duration:.15},0)
-   .to('.hf-wc',{scale:1.55,rotate:-5,yPercent:6,duration:1,ease:'power1.inOut'},0)
+   .to('.hf-wc',{scale:1.28,rotate:-4,yPercent:-8,duration:1,ease:'power1.inOut'},0)
    .to('.hf-wd',{yPercent:-120,xPercent:30,rotate:25,opacity:0,duration:.8,ease:'power2.in'},0)
    .to('.hf-a',{xPercent:-35,opacity:0,duration:.7,ease:'power2.in'},.05)
    .to('.hf-b',{xPercent:35,opacity:0,duration:.7,ease:'power2.in'},.05)
