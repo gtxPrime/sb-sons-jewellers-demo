@@ -22,13 +22,13 @@ function go(){
   gsap.set(sg,{opacity:0,scale:.5});
   const tls=gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8,onToggle:t=>{S.on=t.isActive}})});
   tls.to(sg,{opacity:mobile?.38:.95,scale:1,duration:.5,ease:'power2.out'},0)
-   .to(S,{rx:1.3,ry:Math.PI,duration:1,ease:'sine.inOut'},0)
+   .to(S,{rx:1.05,ry:Math.PI,duration:1,ease:'sine.inOut'},0)
    .to(sg,{x:sx,duration:1,ease:'sine.inOut'},0)
-   .to(S,{rx:.18,ry:Math.PI*2.2,duration:1,ease:'sine.inOut'},1)
+   .to(S,{rx:.28,ry:Math.PI*2.2,duration:1,ease:'sine.inOut'},1)
    .to(sg,{x:-sx,duration:1,ease:'sine.inOut'},1)
-   .to(S,{rx:1.45,ry:Math.PI*3.4,duration:1,ease:'sine.inOut'},2)
+   .to(S,{rx:1.3,ry:Math.PI*3.4,duration:1,ease:'sine.inOut'},2)
    .to(sg,{x:sx,duration:1,ease:'sine.inOut'},2)
-   .to(S,{rx:.2,ry:Math.PI*4.6,sc:1.15,duration:1,ease:'sine.inOut'},3)
+   .to(S,{rx:.3,ry:Math.PI*4.6,sc:1.15,duration:1,ease:'sine.inOut'},3)
    .to(sg,{x:0,duration:1,ease:'sine.inOut'},3);
   ScrollTrigger.create({trigger:'#story',start:'top bottom',end:'bottom top',onToggle:t=>{S.on=t.isActive}});
  }else{
