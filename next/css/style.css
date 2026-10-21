@@ -476,3 +476,8 @@ html.light .links a,html.light .iconbtn{color:#1d1608}
 html.light #story .links a{color:inherit}
 html.light .ticker,html.light .rate-chip{color:#6a4d10}
 html.light details,html.light .faq-item{border-color:#d9b25f66}
+html.light .cpanel,html.light .cpanel *,html.light .sl-card,html.light .sl-card *,html.light .card .tag,html.light #showroom *{color:#f6efe0}
+html.light .card .tag{color:#6a4d10}
+html.light .tabs button,html.light .sl-tabs button{color:#6a4d10;border-color:#b8924a99}
+html.light .tabs button.on,html.light .sl-tabs button.on{color:#1b1405}
+html.light .cpanel .tag,html.light .cpanel small{color:#f2d896}
