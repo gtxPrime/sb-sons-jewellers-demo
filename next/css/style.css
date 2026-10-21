@@ -391,3 +391,4 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 #sgem::after{content:"";position:absolute;left:15%;right:15%;bottom:-6%;height:12%;background:radial-gradient(closest-side,#e8c87733,transparent);filter:blur(10px);z-index:0}
 @media(max-width:700px){#story .ghost{display:none}}
 @media(max-width:700px){#story .story-line{bottom:12%;top:auto}.story-gem{width:70vw}}
+@media(max-width:700px){#story .pin .story-line{top:auto!important;bottom:13%!important;margin:0!important;transform-origin:center}#story .story-line small{margin-bottom:10px}}
