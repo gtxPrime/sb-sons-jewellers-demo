@@ -42,7 +42,7 @@ rs();addEventListener('resize',rs);
 /* quick view */
 let quick=false;
 $('#quick').onclick=()=>{quick=!quick;document.documentElement.classList.toggle('noanim',quick);$('#quick').textContent=quick?'Back to the story':'Quick view: all designs';
- if(quick){ScrollTrigger.getAll().forEach(t=>t.disable());gsap.set('.reveal,.story-line',{clearProps:'all'});gsap.set('#track',{clearProps:'all'});window.scrollTo(0,$('#gallery').offsetTop-60);}
+ if(quick){ScrollTrigger.getAll().forEach(t=>t.disable());gsap.set('.reveal,.story-line,.sc,.sr-bg,.sr-bg img,.story-gem,.mqw',{clearProps:'all'});gsap.set('#track',{clearProps:'all'});window.scrollTo(0,$('#gallery').offsetTop-60);}
  else{location.reload()}};
 /* animation */
 function intro(){
