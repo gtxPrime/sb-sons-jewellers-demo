@@ -27,7 +27,6 @@ function go(){
   .to(sg,{x:-sx,duration:.6,ease:'power2.inOut'},.6)
   .to(sg,{x:sx,duration:.6,ease:'power2.inOut'},1.7)
   .to(sg,{x:-sx,duration:.6,ease:'power2.inOut'},2.8)
-  .to(sg,{x:0,duration:.6,ease:'power2.inOut'},3.6)
   .to({},{duration:.001},4.5);
  const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
  [0,1.1,2.2,3.3].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.4,ease:'power2.out'},t);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.85)});
