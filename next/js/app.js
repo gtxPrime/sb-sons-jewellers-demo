@@ -183,25 +183,25 @@ document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i)
    .to({},{duration:.25});
 })();
 
-/* v110 hero: floating cut-out jewellery, scrubbed depth */
+/* v120 hero: hero necklace, composed scroll stages */
 (function(){if(!window.gsap||!window.ScrollTrigger||document.documentElement.classList.contains('noanim'))return;
  const H=document.getElementById('hero');if(!H||!H.classList.contains('hf'))return;
- const C=H.querySelector('.hf-c'),D=H.querySelector('.hf-d');
+ const C=H.querySelector('.hf-c'),mob=innerWidth<800;
  gsap.from('.hf-glow',{scale:.3,opacity:0,duration:2.4,ease:'power3.out',delay:.2});
- gsap.from('.hf-c',{scale:.7,opacity:0,rotate:-12,yPercent:8,duration:1.8,ease:'power3.out',delay:.5});
- gsap.from('.hf-d',{scale:.6,opacity:0,rotate:30,x:120,duration:1.8,ease:'power3.out',delay:.9});
- gsap.from('.hf-a i',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:.7});
+ gsap.from('.hf-disc',{scale:.5,opacity:0,duration:1.8,ease:'power3.out',delay:.2});
+ gsap.from('.hf-c',{scale:.72,opacity:0,yPercent:6,duration:1.9,ease:'power3.out',delay:.5});
+ gsap.from('.hf-a i,.hf-a small',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:.7});
  gsap.from('.hf-b em',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:1.1});
- gsap.to(C,{y:-12,duration:3.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
- gsap.to(D,{y:14,duration:4.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
- if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hf-wc',{x:x*-26,y:y*-16,duration:1.2});gsap.to('.hf-wd',{x:x*50,y:y*30,duration:1.2});gsap.to('.hf-h',{x:x*18,duration:1.4});gsap.to('.hf-glow',{x:x*-60,y:y*-40,duration:1.6})});
- const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=110%',pin:true,scrub:.7,anticipatePin:1}});
- tl.to('.hz-ui,.scroll-cue',{opacity:0,y:20,duration:.15},0)
-   .to('.hf-wc',{scale:(innerWidth<800?1.1:1.28),rotate:-4,yPercent:-8,duration:1,ease:'power1.inOut'},0)
-   .to('.hf-wd',{yPercent:-120,xPercent:30,rotate:25,opacity:0,duration:.8,ease:'power2.in'},0)
-   .to('.hf-a',{xPercent:-35,opacity:0,duration:.7,ease:'power2.in'},.05)
-   .to('.hf-b',{xPercent:35,opacity:0,duration:.7,ease:'power2.in'},.05)
-   .to('.hf-glow',{scale:2.1,opacity:.9,duration:1},0)
-   .fromTo('.hz-in',{opacity:0,y:30},{opacity:1,y:0,duration:.35},.7)
-   .to({},{duration:.25});
+ gsap.to(C,{y:-10,duration:3.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hf-wc',{x:x*-24,y:y*-14,duration:1.2});gsap.to('.hf-disc',{x:x*30,y:y*18,duration:1.4});gsap.to('.hf-h',{x:x*16,duration:1.4});gsap.to('.hf-glow',{x:x*-60,y:y*-40,duration:1.6})});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=120%',pin:true,scrub:.7,anticipatePin:1}});
+ tl.to('.hz-ui,.scroll-cue,.hf-soc',{opacity:0,y:20,duration:.18},0)
+   .to('.hf-a',{xPercent:-30,opacity:0,duration:.45,ease:'power2.in'},0)
+   .to('.hf-b',{xPercent:30,opacity:0,duration:.45,ease:'power2.in'},0)
+   .to('.hf-line',{opacity:0,duration:.4},0)
+   .to('.hf-wc',{scale:mob?1.22:1.42,yPercent:mob?6:12,duration:1.2,ease:'power1.inOut'},0)
+   .to('.hf-disc',{scale:mob?1.5:1.7,duration:1.2,ease:'power1.inOut'},0)
+   .to('.hf-glow',{scale:2.2,opacity:.95,duration:1.2},0)
+   .fromTo('.hz-in',{opacity:0,y:24},{opacity:1,y:0,duration:.4},.75)
+   .to({},{duration:.3});
 })();

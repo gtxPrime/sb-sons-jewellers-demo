@@ -738,3 +738,11 @@ html #hero.hf .hf-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
  #hero.hf .hz-in{font-size:24px;width:90vw}
 }
 #hero.hf .hf-h>span,#hero.hf .hf-h i,#hero.hf .hf-h em{overflow:visible!important}
+/* v120 hero: necklace centre piece */
+.hf-wc{width:min(76vh,64vw);margin-left:calc(min(76vh,64vw)/-2);margin-top:calc(min(76vh,64vw)*-.47)}
+.hf-disc{margin-left:calc(min(80vh,54vw)/-2)}
+#hero.hf .hz-in{bottom:auto;top:23vh;font-size:clamp(24px,3vw,44px);width:36vw;z-index:7}
+@media(max-width:800px){
+ .hf-wc{width:100vw;margin-left:-50vw;margin-top:-47vw}
+ #hero.hf .hz-in{top:20vh;width:80vw;bottom:auto;font-size:26px}
+}
