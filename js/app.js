@@ -81,7 +81,7 @@ function boot(){
  ScrollTrigger.create({start:60,onUpdate:s=>$('#nav').classList.toggle('solid',s.scroll()>60)});
  if(reduce){$('#loader').remove();document.body.classList.remove('lock');document.documentElement.classList.add('noanim');return}
  /* loader: real progress */
- gsap.set('#hero .hero-in>*,.scroll-cue',{opacity:0});
+ gsap.set('#hero .hero-in>*:not(.hx-l):not(.hx-r),.scroll-cue',{opacity:0});
  const pc=$('#pct'),pr={p:0};
  const srcs=['img/crest.png','img/ai/ai-hero.jpg','img/real/showroom.jpg'];
  const loaded=Promise.race([Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(()=>document.fonts?document.fonts.ready:0),new Promise(r=>setTimeout(r,3500))]);
@@ -94,7 +94,7 @@ function boot(){
     .to('#loader .lp.b',{yPercent:101,duration:.95,ease:'power4.inOut'},'<');
   }})})});
  /* hero parallax out */
- gsap.to('.hero-in',{yPercent:-18,opacity:.2,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+ gsap.to('.hz-none',{scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
  /* story */
  const lines=$$('.story-line'),st=gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'+=320%',pin:true,scrub:.6}});
  st.fromTo('.story-ring',{scale:.3,opacity:0},{scale:1,opacity:1,duration:lines.length*1.2,ease:'none',stagger:.2},0);
@@ -149,3 +149,59 @@ var m=document.querySelector('#hero .hero-mono');if(m)gsap.to(m,{yPercent:-14,ea
 document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i){if(i.closest('.slider'))return;gsap.fromTo(i,{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:i,start:'top bottom',end:'bottom top',scrub:true}})})}catch(e){}})();
 
 (function(){const b=document.getElementById('themeBtn');if(!b)return;const m=document.querySelector('meta[name=theme-color]');const sync=()=>{if(m)m.content=document.documentElement.classList.contains('light')?'#fbf6ea':'#070c1a'};sync();b.addEventListener('click',()=>{const l=document.documentElement.classList.toggle('light');try{localStorage.setItem('sbtheme',l?'light':'dark')}catch(e){}sync()})})();
+
+/* v99 hero collage: staggered reveal + depth parallax */
+(function(){if(!window.gsap||!window.ScrollTrigger||document.documentElement.classList.contains('noanim'))return;
+ const f=document.querySelectorAll('.hx-r figure');if(!f.length)return;
+ gsap.from('.hx-a',{clipPath:'circle(0% at 50% 100%)',duration:1.6,ease:'power3.out',delay:.5});
+ gsap.from('.hx-b',{xPercent:-30,opacity:0,duration:1.2,ease:'power3.out',delay:.9});
+ gsap.from('.hx-c',{scale:.3,opacity:0,duration:1.1,ease:'back.out(1.4)',delay:1.2});
+ [['.hx-a',-6],['.hx-b',-16],['.hx-c',-24],['.hx-ring',-10]].forEach(([s,y])=>gsap.to(s,{yPercent:y*1.6,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}}));
+ if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hx-a',{x:x*-14,y:y*-10,duration:1});gsap.to('.hx-b',{x:x*22,duration:1});gsap.to('.hx-c',{x:x*-30,y:y*20,duration:1});gsap.to('.h-big',{x:x*30,duration:1.4})});
+})();
+
+/* v103 hero: step through the arch (pinned, scrubbed) */
+(function(){if(!window.gsap||!window.ScrollTrigger||document.documentElement.classList.contains('noanim'))return;
+ const A=document.getElementById('hzA');if(!A)return;const mob=innerWidth<=800;
+ const th=document.querySelector('.hz-thread line');if(th){const L=th.getTotalLength?th.getTotalLength():100;}
+ gsap.from('.hz-thread',{scaleY:0,transformOrigin:'50% 0',duration:1.4,ease:'power3.out',delay:.3});
+ gsap.from('.hz-bead',{opacity:0,scale:0,duration:.8,delay:1.4});
+ gsap.from(A,{clipPath:'inset(100% 0 0 0)',duration:1.6,ease:'power3.out',delay:.6});
+ gsap.from('.hz-i1',{scale:1.3,duration:2.2,ease:'power2.out',delay:.6});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=130%',pin:true,scrub:.7,anticipatePin:1}});
+ tl.to('.hz-ui,.scroll-cue,.hz-mono',{opacity:0,y:20,duration:.15},0)
+   .to('.hz-l',{xPercent:-120,opacity:0,duration:.6,ease:'power2.in'},0)
+   .to('.hz-r',{xPercent:120,opacity:0,duration:.6,ease:'power2.in'},0)
+   .to(A,{left:0,right:0,top:0,bottom:0,borderRadius:0,duration:1,ease:'power2.inOut'},0)
+   .to('.hz-echo',{opacity:0,scale:1.8,duration:.8},0)
+   .to('.hz-thread,.hz-bead',{opacity:0,duration:.2},0)
+   .to(A,{outlineOffset:0,outlineColor:'#d9b25f00',duration:.5},0)
+   .to('.hz-i1',{opacity:0,scale:1.15,duration:.5,ease:'none'},.35)
+   .fromTo('.hz-i2',{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.7,ease:'none'},.3)
+   .to('.hz-shade',{opacity:1,duration:.3},.6)
+   .fromTo('.hz-in',{opacity:0,y:30},{opacity:1,y:0,duration:.35},.75)
+   .to({},{duration:.25});
+})();
+
+/* v120 hero: hero necklace, composed scroll stages */
+(function(){if(!window.gsap||!window.ScrollTrigger||document.documentElement.classList.contains('noanim'))return;
+ const H=document.getElementById('hero');if(!H||!H.classList.contains('hf'))return;
+ const C=H.querySelector('.hf-c'),mob=innerWidth<800;
+ gsap.from('.hf-glow',{scale:.3,opacity:0,duration:2.4,ease:'power3.out',delay:.2});
+ gsap.from('.hf-disc',{scale:.5,opacity:0,duration:1.8,ease:'power3.out',delay:.2});
+ gsap.from('.hf-c',{scale:.72,opacity:0,yPercent:6,duration:1.9,ease:'power3.out',delay:.5});
+ gsap.from('.hf-a i,.hf-a small',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:.7});
+ gsap.from('.hf-b em',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:1.1});
+ gsap.to(C,{y:-10,duration:3.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hf-wc',{x:x*-24,y:y*-14,duration:1.2});gsap.to('.hf-disc',{x:x*30,y:y*18,duration:1.4});gsap.to('.hf-h',{x:x*16,duration:1.4});gsap.to('.hf-glow',{x:x*-60,y:y*-40,duration:1.6})});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=120%',pin:true,scrub:.7,anticipatePin:1}});
+ tl.to('.hz-ui,.scroll-cue,.hf-soc',{opacity:0,y:20,duration:.18},0)
+   .to('.hf-a',{xPercent:-30,opacity:0,duration:.45,ease:'power2.in'},0)
+   .to('.hf-b',{xPercent:30,opacity:0,duration:.45,ease:'power2.in'},0)
+   .to('.hf-line',{opacity:0,duration:.4},0)
+   .to('.hf-wc',{scale:mob?1.22:1.42,yPercent:mob?6:12,duration:1.2,ease:'power1.inOut'},0)
+   .to('.hf-disc',{scale:mob?1.5:1.7,duration:1.2,ease:'power1.inOut'},0)
+   .to('.hf-glow',{scale:2.2,opacity:.95,duration:1.2},0)
+   .fromTo('.hz-in',{opacity:0,y:24},{opacity:1,y:0,duration:.4},.75)
+   .to({},{duration:.3});
+})();

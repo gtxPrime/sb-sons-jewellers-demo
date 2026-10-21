@@ -40,7 +40,7 @@ function go(){
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  /* 4. diwali: arch opens, countdown rises, offer and CTA enter from opposite sides */
- gsap.fromTo('.dw-img',{clipPath:'inset(40% 30% 0% 30% round 200px 200px 0 0)',scale:.8},{clipPath:'inset(0% 0% 0% 0% round 200px 200px 18px 18px)',scale:1,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'top 35%'})});
+ gsap.fromTo('.dw-img',{clipPath:'circle(0% at 50% 50%)',scale:.9},{clipPath:'circle(72% at 50% 50%)',scale:1,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'top 35%'})});
  gsap.from('.dw-img img',{scale:1.5,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'bottom 40%'})});
  gsap.from('#count>div',{y:90,opacity:0,rotateX:-70,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'#count',start:'top 90%'}});
  gsap.from('#offerBox',{x:-120,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#offerBox',start:'top 90%'}});
@@ -62,4 +62,56 @@ function go(){
 }
 function start(){setTimeout(go,50)}
 if(document.readyState==='complete')start();else addEventListener('load',start);
+})();
+/* v93: arch reveals, heading threads, page thread */
+(function(){
+ if(document.documentElement.classList.contains('noanim'))return;
+ const pend=new Set();let qq=0;
+ const chk=()=>{qq=0;const H=innerHeight*.92;pend.forEach(el=>{const r=el.getBoundingClientRect();if(r.top<H&&r.bottom>0){el.classList.add('in');pend.delete(el)}})};
+ const kick=()=>{if(!qq)qq=requestAnimationFrame(chk)};addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);
+ const io={observe:el=>{pend.add(el);kick()}};
+ const scan=()=>{document.querySelectorAll('.ed,.igc,.rv,.pillar,.dw-img,.diya').forEach(el=>{if(el.__o)return;el.__o=1;if(el.matches('.ed,.igc'))el.classList.add('arch-r');io.observe(el)});
+  document.querySelectorAll('section .wrap>h2,section .rv-head h2,section .wrap>.eyebrow+h2').forEach(h=>{if(h.__o)return;h.__o=1;h.classList.add('thr');if(getComputedStyle(h).textAlign==='center')h.classList.add('thc');io.observe(h)})};
+ scan();const st=document.getElementById('slStage');if(st)new MutationObserver(scan).observe(st,{childList:true});
+ /* cpanels: arch reveal when they first show on the pinned track */
+ document.querySelectorAll('.cpanel').forEach((c,i)=>{c.classList.add('arch-r');setTimeout(()=>c.classList.add('in'),600+i*250)});
+ const pt=document.createElement('div');pt.id='pt';pt.innerHTML='<i></i>';document.body.appendChild(pt);const b=pt.firstChild;
+ let q=0;const u=()=>{q=0;const m=document.documentElement.scrollHeight-innerHeight;b.style.top=(m>0?scrollY/m*100:0)+'%'};
+ addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(u)},{passive:true});u();
+})();
+/* v97: Diwali signature: mandala draws itself, diyas light one by one along a gold thread, embers drift with parallax */
+(function(){
+ if(document.documentElement.classList.contains('noanim')||!window.gsap||!window.ScrollTrigger)return;
+ const dw=document.getElementById('diwali'),img=dw&&dw.querySelector('.dw-img');if(!dw||!img)return;
+ const NS='http://www.w3.org/2000/svg',mob=innerWidth<700;
+ /* mandala behind the arch image */
+ const stg=document.createElement('div');stg.className='dw-stage';img.parentNode.insertBefore(stg,img);stg.appendChild(img);
+ let m='<svg class="mand" viewBox="-300 -300 600 600" aria-hidden="true" fill="none" stroke="#f2d896" stroke-width="1.2" stroke-linecap="round">';
+ [290,262,236,150].forEach(r=>m+='<circle class="mp" r="'+r+'"/>');
+ for(let i=0;i<24;i++){const a=i*15;m+='<path class="mp" transform="rotate('+a+')" d="M0 -150 C 26 -190 26 -230 0 -262 C -26 -230 -26 -190 0 -150Z"/>'}
+ for(let i=0;i<12;i++){const a=i*30+15;m+='<path class="mp" transform="rotate('+a+')" d="M0 -262 L 10 -276 L 0 -290 L -10 -276Z"/>'}
+ for(let i=0;i<36;i++){m+='<circle class="mp" transform="rotate('+(i*10)+') translate(0 -249)" r="2.4"/>'}
+ m+='</svg>';stg.insertAdjacentHTML('afterbegin',m);
+ const mp=stg.querySelectorAll('.mp');mp.forEach(e=>{let l=60;try{l=e.getTotalLength()}catch(_){}e.style.strokeDasharray=l;e.style.strokeDashoffset=l;e.__l=l});
+ gsap.to(mp,{strokeDashoffset:0,stagger:{each:.012,from:'start'},ease:'none',scrollTrigger:{trigger:stg,start:'top 85%',end:'center 45%',scrub:.8}});
+ gsap.fromTo('.mand',{rotate:-25,opacity:.9},{rotate:25,ease:'none',scrollTrigger:{trigger:stg,start:'top bottom',end:'bottom top',scrub:true}});
+ /* diya thread */
+ const row=document.createElement('div');row.className='dw-row';
+ const n=mob?5:7,W=1000,H=160;let d='M0 100';const px=[];
+ for(let i=0;i<n;i++){const x=(i+.5)/n*W,y=i%2?58:104;px.push([x,y])}
+ d='M0 80';px.forEach(p=>d+=' L'+p[0]+' '+p[1]);d='M0 80 '+px.map((p,i)=>{const pr=i?px[i-1]:[0,80];return 'C'+((pr[0]+p[0])/2)+' '+pr[1]+' '+((pr[0]+p[0])/2)+' '+p[1]+' '+p[0]+' '+p[1]}).join(' ')+' C'+(W-40)+' '+px[n-1][1]+' '+W+' 80 '+W+' 80';
+ let s='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true"><path id="dwT" d="'+d+'" stroke="#d9b25f" stroke-width="1.6" fill="none" vector-effect="non-scaling-stroke"/></svg>';
+ row.innerHTML=s;
+ px.forEach((p,i)=>{const e=document.createElement('i');e.className='dy';e.style.left=(p[0]/W*100)+'%';e.style.top=(p[1]/H*100)+'%';e.innerHTML='<b class="fl"></b><u></u>';row.appendChild(e)});
+ const cd=document.getElementById('count');cd.parentNode.insertBefore(row,cd);
+ const T=row.querySelector('#dwT'),L=T.getTotalLength();T.style.strokeDasharray=L;T.style.strokeDashoffset=L;
+ const dys=row.querySelectorAll('.dy'),tl=gsap.timeline({scrollTrigger:{trigger:row,start:'top 88%',end:'top 38%',scrub:.7}});
+ tl.to(T,{strokeDashoffset:0,ease:'none',duration:dys.length},0);
+ dys.forEach((e,i)=>{tl.fromTo(e.firstChild,{scale:0,opacity:0,transformOrigin:'50% 100%'},{scale:1,opacity:1,duration:.7,ease:'back.out(2)'},i+.15);tl.fromTo(e.lastChild,{opacity:.35},{opacity:1,duration:.5},i+.15)});
+ /* embers */
+ const em=document.createElement('div');em.className='embers';em.setAttribute('aria-hidden','true');const N=mob?10:18;
+ for(let i=0;i<N;i++){const e=document.createElement('i');const z=.4+Math.random()*1.2;e.style.cssText='left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;width:'+(2+z*3)+'px;height:'+(2+z*3)+'px;opacity:'+(.25+z*.3);e.dataset.z=z;em.appendChild(e)}
+ dw.insertBefore(em,dw.firstChild);
+ em.querySelectorAll('i').forEach(e=>gsap.fromTo(e,{y:120*e.dataset.z},{y:-220*e.dataset.z,ease:'none',scrollTrigger:{trigger:dw,start:'top bottom',end:'bottom top',scrub:true}}));
+ ScrollTrigger.refresh();
 })();
