@@ -533,7 +533,7 @@ html.light #hero h1 em,html.light #hero h1 .gold-text{background:linear-gradient
 .ed figcaption,.cpanel .cap{text-align:center}
 .cpanel .cap{left:18px;right:18px}
 .ed figcaption{padding:22px 18px 26px}
-.edq{left:50%;transform:translateX(-50%)}
+
 .arch-r{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s cubic-bezier(.2,.8,.2,1)}
 .arch-r.in{clip-path:inset(0 0 0 0)}
 .arch-r img{transform:scale(1.18)}.arch-r.in img{transform:scale(1)}
@@ -561,3 +561,4 @@ html.light #hero h1 em,html.light #hero h1 .gold-text{background:linear-gradient
 .cpanel:nth-child(even){margin-top:clamp(24px,5vw,70px)}
 .igc{height:clamp(240px,34vw,400px)}
 .thc::after{margin-left:auto;margin-right:auto;transform-origin:center;background:linear-gradient(90deg,transparent,#d9b25f,transparent)}
+.ed .edq{left:0;right:0;width:max-content;margin-left:auto;margin-right:auto;transform:none!important}
