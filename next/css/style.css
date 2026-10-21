@@ -687,3 +687,4 @@ body.lock #hero .hz-h,body.lock #hero .hz-ui{visibility:hidden}
  .hz-thread{display:none}
  .hz-ui{bottom:76px}
 }
+html.light nav.top:not(.solid),html.light nav.top:not(.solid) a:not(.btn),html.light nav.top:not(.solid) .brand,html.light nav.top:not(.solid) .brand *{color:#f4ecd8}
