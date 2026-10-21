@@ -513,3 +513,5 @@ html.light #hero p.sub{color:#2f2410}
 @media(max-width:820px){#slStage{grid-template-columns:repeat(2,1fr);gap:14px;padding:0 16px}.ed:nth-child(3n+2),.ed:nth-child(3n){margin-top:0}.ed:nth-child(even){margin-top:34px}.ed figcaption{padding:14px}.ed figcaption span{display:none}}
 html.light .ed{background:#fffaf0;box-shadow:0 20px 44px #8a671833}
 html.light .ed figcaption,html.light .ed figcaption *{color:#f6efe0}html.light .ed figcaption small,html.light .edq{color:#f2d896}
+@media(max-width:820px){.edq{font-size:9.5px;letter-spacing:.08em;white-space:nowrap}.ed figcaption b{font-size:19px}}
+html.light #hero h1 em,html.light #hero h1 .gold-text{background:linear-gradient(100deg,#7a5410,#a97a1f 50%,#6a4a0c);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
