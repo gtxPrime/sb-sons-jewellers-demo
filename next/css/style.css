@@ -667,3 +667,16 @@ body.lock #hero .hz-h,body.lock #hero .hz-ui{visibility:hidden}
  .hz-thread{height:var(--at)}
  .hz .scroll-cue{display:none}
 }
+/* v104 hero polish */
+.hz .hz-mono{display:none!important}
+#hero.hz,html.light #hero.hz{--ab:17vh}
+.hz-h em.gold-text,html.light .hz-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c36f 50%,#f9e4ae);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none}
+.hz-ui{bottom:3vh;justify-content:flex-start;gap:28px;padding:0 3.2vw 0 270px}
+.hz-ui .btn.ghost{display:none}
+.hz-ui .rate-chip{position:absolute;right:100px;bottom:0}
+.hz-ui .sub{max-width:24vw}
+.hz-in{bottom:12vh}
+@media(max-width:800px){
+ #hero.hz,html.light #hero.hz{--ab:21vh}
+ .hz-ui{padding:0 18px;justify-content:center}
+}
