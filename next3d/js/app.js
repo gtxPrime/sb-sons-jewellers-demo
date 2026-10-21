@@ -16,9 +16,9 @@ $$('[data-wa]').forEach(e=>e.href=wa(e.dataset.wa));
  let f='All',idx=0,list=[],drag=null;
  const st=$('#slStage'),pr=$('#slPrev'),nx=$('#slNext'),sl=$('#sl');
  function build(){list=S.products.filter(p=>f==='All'||p.cat===f);idx=Math.min(idx,list.length-1);
-  st.innerHTML=list.map((p,i)=>`<div class="sl-card" data-i="${i}"><img src="${p.img}" alt="${p.name} (AI-generated demo image)" loading="lazy" draggable="false"></div>`).join('');
+  st.innerHTML=list.map((p,i)=>`<figure class="ed" data-i="${i}"><img src="${p.img}" alt="${p.name} (AI-generated demo image)" loading="lazy" draggable="false"><figcaption><small>${p.cat}</small><b>${p.name}</b><span>${p.meta}</span><a class="edq" target="_blank" rel="noopener" href="${wa('Hello S B & Sons Jewellers, I would like to enquire about: '+p.name)}">Enquire on WhatsApp</a></figcaption></figure>`).join('');if(window.gsap&&window.ScrollTrigger){ScrollTrigger.batch('#slStage .ed',{start:'top 92%',once:true,onEnter:b=>gsap.fromTo(b,{y:70,opacity:0,scale:.96},{y:0,opacity:1,scale:1,duration:.9,stagger:.1,ease:'power3.out',overwrite:true})});ScrollTrigger.refresh()}
   $('#slDots').innerHTML=list.map((p,i)=>`<i data-i="${i}"></i>`).join('');render()}
- function render(){[...st.children].forEach((c,i)=>{const o=i-idx,a=Math.abs(o);c.style.setProperty('--o',o);c.style.setProperty('--a',Math.min(a,3));c.classList.toggle('act',o===0);c.classList.toggle('hid',a>3)});
+ function render(){if(!list[idx])return;[...st.children].forEach((c,i)=>{const o=i-idx,a=Math.abs(o);c.style.setProperty('--o',o);c.style.setProperty('--a',Math.min(a,3));c.classList.toggle('act',o===0);c.classList.toggle('hid',a>3)});
   [...$('#slDots').children].forEach((d,i)=>d.classList.toggle('on',i===idx));
   const p=list[idx];if(!p)return;$('#slName').textContent=p.name;$('#slMeta').textContent=p.meta+' ('+p.cat+')';$('#slCount').textContent=String(idx+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0');
   $('#slEnq').href=wa('Hello S B & Sons Jewellers, I would like to enquire about: '+p.name)}
