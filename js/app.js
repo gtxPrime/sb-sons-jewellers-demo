@@ -47,10 +47,11 @@ $('#quick').onclick=()=>{quick=!quick;document.documentElement.classList.toggle(
 /* animation */
 function intro(){
  document.body.classList.remove('lock');
+ gsap.set('#hero .hero-in>*,.scroll-cue',{clearProps:'opacity'});
  const tl=gsap.timeline();
  tl.from('.hero-mono',{scale:.6,opacity:0,duration:1.2,ease:'power3.out'})
    .from('#hero h1 i,#hero h1 em',{yPercent:110,duration:1.1,stagger:.15,ease:'power4.out'},'-=.7')
-   .from('#hero .sub,.hero-cta,.ticker',{y:24,opacity:0,duration:.9,stagger:.12},'-=.6');
+   .from('#hero .sub,.hero-cta,.ticker,.rate-chip',{y:24,opacity:0,duration:.9,stagger:.12},'-=.6');
 }
 function boot(){
  const bar=$('#loader .bar i');
@@ -61,7 +62,19 @@ function boot(){
   $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length>1&&$(h)){e.preventDefault();lenis.scrollTo(h,{offset:-40})}}))}
  ScrollTrigger.create({start:60,onUpdate:s=>$('#nav').classList.toggle('solid',s.scroll()>60)});
  if(reduce){$('#loader').remove();document.body.classList.remove('lock');document.documentElement.classList.add('noanim');return}
- gsap.to(bar,{width:'100%',duration:1,ease:'power1.inOut',onComplete:()=>gsap.to('#loader',{yPercent:-100,duration:.9,ease:'power4.inOut',onComplete:()=>{$('#loader').remove();intro()}})});
+ /* loader: real progress */
+ gsap.set('#hero .hero-in>*,.scroll-cue',{opacity:0});
+ const pc=$('#pct'),pr={p:0};
+ const srcs=['img/crest.png','img/ai/ai-hero.jpg','img/real/showroom.jpg'];
+ const loaded=Promise.race([Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(()=>document.fonts?document.fonts.ready:0),new Promise(r=>setTimeout(r,3500))]);
+ const draw=()=>{pc.textContent=Math.round(pr.p);bar.style.width=pr.p+'%'};
+ gsap.to(pr,{p:88,duration:1.5,ease:'power1.out',onUpdate:draw,onComplete:()=>loaded.then(()=>{
+  gsap.to(pr,{p:100,duration:.45,ease:'none',onUpdate:draw,onComplete:()=>{
+   const o=gsap.timeline({onComplete:()=>{$('#loader').remove();intro()}});
+   o.to('#loader .lc',{opacity:0,scale:1.12,duration:.5,ease:'power2.in'})
+    .to('#loader .lp.t',{yPercent:-101,duration:.95,ease:'power4.inOut'},'-=.05')
+    .to('#loader .lp.b',{yPercent:101,duration:.95,ease:'power4.inOut'},'<');
+  }})})});
  /* hero parallax out */
  gsap.to('.hero-in',{yPercent:-18,opacity:.2,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
  /* story */
@@ -89,5 +102,7 @@ function boot(){
  addEventListener('load',()=>ScrollTrigger.refresh());
 }
 if(document.readyState==='complete')boot();else addEventListener('load',boot);
-setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();document.body.classList.remove('lock')}},5000);
+setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();document.body.classList.remove('lock')}},8000);
 })();
+
+(function(){const t=document.querySelectorAll('.tabs button');t.forEach(b=>b.onclick=()=>{t.forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id==='t-'+b.dataset.t));window.ScrollTrigger&&ScrollTrigger.refresh()})})();
