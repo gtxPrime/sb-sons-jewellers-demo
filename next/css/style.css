@@ -703,7 +703,7 @@ html #hero.hz .hz-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
 .hf-b{right:3.2vw;bottom:17vh;text-align:right}
 .hf-w{position:absolute;z-index:3;display:block;pointer-events:none}
 .hf-wc{left:50%;top:50%;width:min(64vh,46vw);margin-left:calc(min(64vh,46vw)/-2);margin-top:-37vh;z-index:3}
-.hf-wd{right:4vw;top:14vh;width:min(34vw,60vh);z-index:4}
+.hf-wd{right:3vw;top:12vh;width:min(25vw,46vh);z-index:4}
 .hf-p{display:block;width:100%;height:auto;will-change:transform;filter:drop-shadow(0 30px 40px #000a)}
 .hf-d{transform:rotate(9deg)}
 .hz.hf .hz-ui{z-index:6}
