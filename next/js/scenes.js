@@ -24,9 +24,9 @@ function go(){
   .to(P,{v:2.6,duration:.7,ease:'sine.inOut'},.3).to(P,{v:5,duration:.9,ease:'sine.inOut'},1.15)
   .to(P,{v:8,duration:.9,ease:'none'},2.25).to(P,{v:3.2,duration:.8,ease:'sine.inOut'},3.3)
   .to(sg,{x:sx,rotate:-6,duration:.3,ease:'sine.out'},0)
-  .to(sg,{x:-sx,rotate:8,duration:.5,ease:'sine.inOut'},.85)
-  .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.95)
-  .to(sg,{x:-sx,rotate:5,duration:.5,ease:'sine.inOut'},3.05)
+  .to(sg,{x:-sx,rotate:8,duration:.4,ease:'sine.inOut'},.7)
+  .to(sg,{x:sx,rotate:-4,duration:.4,ease:'sine.inOut'},1.8)
+  .to(sg,{x:-sx,rotate:5,duration:.4,ease:'sine.inOut'},2.9)
   .to({},{duration:.001},4.5);
  const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
  [0,1.1,2.2,3.3].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.4,ease:'power2.out'},t);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.85)});
