@@ -19,7 +19,7 @@ function go(){
  const sg=$('#sgem'),fr=$$('#sgem .f'),sx=mobile?0:innerWidth*.27;
  gsap.set(sg,{opacity:0,scale:.6,xPercent:-50,yPercent:-50,left:'50%',top:mobile?'34%':'50%'});
  const P={v:0};gsap.set(fr,{opacity:0});const setF=()=>{if(window.__g3)window.__g3.set(P.v);const v=P.v,i=Math.min(7,Math.floor(v)),f=v-i;const b=Math.min(1,Math.max(0,(f-.3)/.4)),w=b*b*(3-2*b);if(setF.l===i&&setF.w===w)return;setF.l=i;setF.w=w;fr.forEach((e,k)=>{e.style.opacity=k===i?1-w:k===i+1?w:0})};setF();
- if(!/gem3d=0/.test(location.search)&&(navigator.hardwareConcurrency||8)>2){import('./gem3d.min.js?v=3').then(m=>{const g=m.createGem(sg,{low:!!window.LOWFX});if(g){window.__g3=g;sg.classList.add('is3d');fr.forEach(e=>e.style.display='none');g.set(P.v)}}).catch(()=>{})}
+ if(!/gem3d=0/.test(location.search)&&(navigator.hardwareConcurrency||8)>2){import('./gem3d.min.js?v=4').then(m=>{const g=m.createGem(sg,{low:!!window.LOWFX,imgs:['img/dt5.webp','img/dt6.webp','img/dt7.webp','img/dt8.webp']});if(g){window.__g3=g;sg.classList.add('is3d');fr.forEach(e=>e.style.display='none');g.set(P.v)}}).catch(()=>{})}
  const rot=gsap.timeline({onUpdate:setF,scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.5})});
  rot.to(sg,{opacity:1,scale:mobile?.9:1,duration:.4,ease:'power2.out'},0)
   .to(P,{v:2.6,duration:.7,ease:'sine.inOut'},.3).to(P,{v:5,duration:.9,ease:'sine.inOut'},1.15)
