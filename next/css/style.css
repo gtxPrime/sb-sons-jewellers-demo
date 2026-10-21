@@ -560,3 +560,4 @@ html.light #hero h1 em,html.light #hero h1 .gold-text{background:linear-gradient
 .rider svg{display:none}
 .cpanel:nth-child(even){margin-top:clamp(24px,5vw,70px)}
 .igc{height:clamp(240px,34vw,400px)}
+.thc::after{margin-left:auto;margin-right:auto;transform-origin:center;background:linear-gradient(90deg,transparent,#d9b25f,transparent)}

@@ -66,9 +66,12 @@ if(document.readyState==='complete')start();else addEventListener('load',start);
 /* v93: arch reveals, heading threads, page thread */
 (function(){
  if(document.documentElement.classList.contains('noanim'))return;
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ const pend=new Set();let qq=0;
+ const chk=()=>{qq=0;const H=innerHeight*.92;pend.forEach(el=>{const r=el.getBoundingClientRect();if(r.top<H&&r.bottom>0){el.classList.add('in');pend.delete(el)}})};
+ const kick=()=>{if(!qq)qq=requestAnimationFrame(chk)};addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);
+ const io={observe:el=>{pend.add(el);kick()}};
  const scan=()=>{document.querySelectorAll('.ed,.igc,.rv,.pillar,.dw-img,.diya').forEach(el=>{if(el.__o)return;el.__o=1;if(el.matches('.ed,.igc'))el.classList.add('arch-r');io.observe(el)});
-  document.querySelectorAll('section .wrap>h2,section .rv-head h2,section .wrap>.eyebrow+h2').forEach(h=>{if(h.__o)return;h.__o=1;h.classList.add('thr');io.observe(h)})};
+  document.querySelectorAll('section .wrap>h2,section .rv-head h2,section .wrap>.eyebrow+h2').forEach(h=>{if(h.__o)return;h.__o=1;h.classList.add('thr');if(getComputedStyle(h).textAlign==='center')h.classList.add('thc');io.observe(h)})};
  scan();const st=document.getElementById('slStage');if(st)new MutationObserver(scan).observe(st,{childList:true});
  /* cpanels: arch reveal when they first show on the pinned track */
  document.querySelectorAll('.cpanel').forEach((c,i)=>{c.classList.add('arch-r');setTimeout(()=>c.classList.add('in'),600+i*250)});
