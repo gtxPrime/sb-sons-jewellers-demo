@@ -9,12 +9,12 @@ function go(){
  gsap.set(g,{opacity:0,xPercent:-50,yPercent:-50});
  const xs=mobile?[.88,.12,.88,.12,.88,.5]:[.9,.08,.92,.08,.9,.5],ys=[.28,.5,.4,.62,.45,.5];
  const tl=gsap.timeline({scrollTrigger:ST({trigger:document.body,start:'top top',end:'bottom bottom',scrub:1.2})});
- xs.forEach((x,i)=>tl.to(g,{x:()=>x*W(),y:()=>ys[i]*innerHeight,rotateY:i*180,rotate:i%2?18:-18,scale:i%2?1.5:.9,duration:1,ease:'sine.inOut'}));
+ xs.forEach((x,i)=>tl.to(g,{x:()=>x*W(),y:()=>ys[i]*innerHeight,rotateY:i*180,rotate:i%2?18:-18,scale:i%2?1.5:.6,duration:1,ease:'sine.inOut'}));
  gsap.set(g,{x:()=>.9*W(),y:()=>.28*innerHeight});
- ScrollTrigger.create({trigger:'#story',start:'top 60%',end:'bottom 40%',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.9,duration:.4,overwrite:true})});
- ScrollTrigger.create({trigger:'#hero',start:'bottom 80%',onEnter:()=>gsap.to(g,{opacity:.9,duration:.6}),onLeaveBack:()=>gsap.to(g,{opacity:0,duration:.4})});
- ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.9,duration:.3,overwrite:true})});
- ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.9,duration:.4})});
+ ScrollTrigger.create({trigger:'#story',start:'top 60%',end:'bottom 40%',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.6,duration:.4,overwrite:true})});
+ ScrollTrigger.create({trigger:'#hero',start:'bottom 80%',onEnter:()=>gsap.to(g,{opacity:.6,duration:.6}),onLeaveBack:()=>gsap.to(g,{opacity:0,duration:.4})});
+ ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.6,duration:.3,overwrite:true})});
+ ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.6,duration:.4})});
  /* 2. story: giant diamond grows, spins and fills the frame behind alternating chapters */
  gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.6})})
   .fromTo('#sgem',{opacity:0,scale:.15,rotate:-40},{opacity:.55,scale:mobile?1.6:2.2,rotate:40,ease:'none',duration:1});
