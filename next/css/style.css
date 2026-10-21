@@ -680,3 +680,10 @@ body.lock #hero .hz-h,body.lock #hero .hz-ui{visibility:hidden}
  #hero.hz,html.light #hero.hz{--ab:21vh}
  .hz-ui{padding:0 18px;justify-content:center}
 }
+@media(max-width:800px){
+ #hero.hz,html.light #hero.hz{--ab:27vh;--at:24vh}
+ .hz-h .hz-l{top:calc(var(--at) - 17vh)}
+ .hz-h .hz-r{bottom:calc(var(--ab) - 12.5vh)}
+ .hz-thread{display:none}
+ .hz-ui{bottom:76px}
+}
