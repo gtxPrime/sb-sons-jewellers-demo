@@ -727,3 +727,5 @@ html #hero.hf .hf-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
  .hf-line,.hf-soc{display:none}
  .hf-sub{display:none}
 }
+.hf-h .hf-sub{opacity:1!important;color:#f2d896!important;-webkit-text-fill-color:#f2d896!important;font-size:clamp(17px,1.8vw,28px)!important}
+.hf-disc{background:radial-gradient(circle at 34% 26%,#2e3d78 0%,#18244f 48%,#0c1431 100%)}
