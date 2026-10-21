@@ -18,21 +18,22 @@ function go(){
  /* 2. story: the diamond turns from side view to top view and back (image sequence), drifting opposite each chapter */
  const sg=$('#sgem'),fr=$$('#sgem .f'),sx=mobile?0:innerWidth*.27;
  gsap.set(sg,{opacity:0,scale:.6,xPercent:-50,yPercent:-50,left:'50%',top:mobile?'34%':'50%'});
- const P={v:0};gsap.set(fr,{opacity:0});const setF=()=>{const v=P.v,i=Math.min(7,Math.floor(v)),f=v-i;fr.forEach((e,k)=>{e.style.opacity=k===i?1-f:k===i+1?f:0})};setF();
- const rot=gsap.timeline({onUpdate:setF,scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8})});
+ const P={v:0};gsap.set(fr,{opacity:0});const setF=()=>{const v=P.v,i=Math.min(7,Math.floor(v)),f=v-i;const b=Math.min(1,Math.max(0,(f-.3)/.4)),w=b*b*(3-2*b);if(setF.l===i&&setF.w===w)return;setF.l=i;setF.w=w;fr.forEach((e,k)=>{e.style.opacity=k===i?1-w:k===i+1?w:0})};setF();
+ const rot=gsap.timeline({onUpdate:setF,scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.5})});
  rot.to(sg,{opacity:1,scale:mobile?.9:1,duration:.4,ease:'power2.out'},0)
   .to(P,{v:2.6,duration:.7,ease:'sine.inOut'},.3).to(P,{v:5,duration:.9,ease:'sine.inOut'},1.15)
-  .to(P,{v:8,duration:.9,ease:'none'},2.25).to(P,{v:3.2,duration:.8,ease:'sine.inOut'},3.3)
-  .to(sg,{x:sx,rotate:-6,duration:.3,ease:'sine.out'},0)
-  .to(sg,{x:-sx,rotate:8,duration:.4,ease:'sine.inOut'},.7)
-  .to(sg,{x:sx,rotate:-4,duration:.4,ease:'sine.inOut'},1.8)
-  .to(sg,{x:-sx,rotate:5,duration:.4,ease:'sine.inOut'},2.9)
+  .to(P,{v:8,duration:1.4,ease:'sine.inOut'},2.25)
+  .to(sg,{x:sx,duration:.5,ease:'power2.inOut'},0)
+  .to(sg,{x:-sx,duration:.6,ease:'power2.inOut'},.6)
+  .to(sg,{x:sx,duration:.6,ease:'power2.inOut'},1.7)
+  .to(sg,{x:-sx,duration:.6,ease:'power2.inOut'},2.8)
+  .to(sg,{x:0,duration:.6,ease:'power2.inOut'},3.6)
   .to({},{duration:.001},4.5);
  const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
  [0,1.1,2.2,3.3].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.4,ease:'power2.out'},t);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.85)});
- gsap.to('#sgem .glint',{backgroundPosition:'-160% 0',ease:'none',scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:1})});
+ gsap.to('#sgem .glint',{backgroundPosition:'-160% 0',ease:'none',scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.5})});
  /* texture layers with slow parallax */
- [['#hero','silk'],['#diwali','crimson'],['#visit','velvet'],['footer','foil']].forEach(([sel,t])=>{const h=$(sel);if(!h)return;const e=document.createElement('i');e.className='tex '+t;e.setAttribute('aria-hidden','true');h.appendChild(e);gsap.fromTo(e,{yPercent:-4},{yPercent:4,ease:'none',scrollTrigger:ST({trigger:h,start:'top bottom',end:'bottom top',scrub:true})})});
+ if(!window.LOWFX)[['#hero','silk'],['#diwali','crimson'],['#visit','velvet'],['footer','foil']].forEach(([sel,t])=>{const h=$(sel);if(!h)return;const e=document.createElement('i');e.className='tex '+t;e.setAttribute('aria-hidden','true');h.appendChild(e);gsap.fromTo(e,{yPercent:-4},{yPercent:4,ease:'none',scrollTrigger:ST({trigger:h,start:'top bottom',end:'bottom top',scrub:true})})});
  /* 3. word bands slide against each other */
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});

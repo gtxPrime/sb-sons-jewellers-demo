@@ -401,3 +401,12 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 .tex.foil{background-image:url(../img/ai/tx-foil.jpg);mix-blend-mode:overlay;opacity:.16;-webkit-mask-image:linear-gradient(to top,#000,transparent 75%);mask-image:linear-gradient(to top,#000,transparent 75%)}
 .tex.velvet{background-image:url(../img/ai/tx-velvet.jpg);opacity:.45}
 @media(max-width:760px){.tex{opacity:.3}.tex.foil{opacity:.14}}
+/* v67 low-power mode: transform/opacity only */
+.lowfx .live::before,.lowfx .live::after,.lowfx .live.dust{animation:none!important;background-image:none}
+.lowfx .tex{display:none}
+.lowfx nav.top.solid,.lowfx #quick,.lowfx .rate-chip,.lowfx .card .tag{backdrop-filter:none;background:#070c1af2}
+.lowfx #sgem::after,.lowfx #sgem .glint{display:none}
+.lowfx body::after{display:none}
+.story-gem{will-change:transform,opacity;contain:layout paint}
+.story-gem img.f{will-change:opacity;aspect-ratio:1;height:auto;transform:translateZ(0)}
+.tex{mix-blend-mode:normal!important;opacity:.14!important}

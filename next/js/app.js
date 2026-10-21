@@ -54,9 +54,9 @@ tick();setInterval(tick,1000);
 const L=$('#lamps');for(let i=0;i<26;i++){const e=document.createElement('i');e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.animationDelay=Math.random()*3+'s';L.appendChild(e)}
 /* sparkle canvas */
 const cv=$('#sparkle'),cx=cv.getContext('2d');let W,H,pts=[];
-function rs(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;pts=Array.from({length:Math.round(innerWidth/14)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.6+.4)*devicePixelRatio,s:Math.random()*.4+.1,p:Math.random()*6}))}
+function rs(){const D=Math.min(devicePixelRatio,1.5);W=cv.width=cv.offsetWidth*D;H=cv.height=cv.offsetHeight*D;pts=Array.from({length:Math.round(innerWidth/(window.LOWFX?40:18))},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.6+.4)*devicePixelRatio,s:Math.random()*.4+.1,p:Math.random()*6}))}
 rs();addEventListener('resize',rs);
-(function draw(t){cx.clearRect(0,0,W,H);for(const q of pts){q.y-=q.s*devicePixelRatio*.3;if(q.y<0)q.y=H;const a=.35+.65*Math.abs(Math.sin(t/900+q.p));cx.fillStyle=`rgba(242,216,150,${a})`;cx.beginPath();cx.arc(q.x,q.y,q.r,0,7);cx.fill()}if(!reduce)requestAnimationFrame(draw)})(0);
+(function draw(t){if(scrollY>innerHeight*1.2){if(!reduce)requestAnimationFrame(draw);return}cx.clearRect(0,0,W,H);for(const q of pts){q.y-=q.s*devicePixelRatio*.3;if(q.y<0)q.y=H;const a=.35+.65*Math.abs(Math.sin(t/900+q.p));cx.fillStyle=`rgba(242,216,150,${a})`;cx.beginPath();cx.arc(q.x,q.y,q.r,0,7);cx.fill()}if(!reduce)requestAnimationFrame(draw)})(0);
 /* quick view */
 let quick=false;
 $('#quick').onclick=()=>{quick=!quick;document.documentElement.classList.toggle('noanim',quick);$('#quick').textContent=quick?'Back to the story':'Quick view: all designs';
@@ -76,7 +76,7 @@ function boot(){
  if(!window.gsap){$('#loader').remove();document.body.classList.remove('lock');return}
  gsap.registerPlugin(ScrollTrigger);
  let lenis;
- if(window.Lenis&&!reduce&&!matchMedia('(pointer:coarse)').matches){lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+ if(window.Lenis&&!reduce&&!matchMedia('(pointer:coarse)').matches){lenis=new Lenis({lerp:.12,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
   $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length>1&&$(h)){e.preventDefault();lenis.scrollTo(h,{offset:-40})}}))}
  ScrollTrigger.create({start:60,onUpdate:s=>$('#nav').classList.toggle('solid',s.scroll()>60)});
  if(reduce){$('#loader').remove();document.body.classList.remove('lock');document.documentElement.classList.add('noanim');return}
