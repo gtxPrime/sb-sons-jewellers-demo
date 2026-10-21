@@ -749,3 +749,6 @@ html #hero.hf .hf-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
 @media(max-width:800px){.hf-disc{margin-left:-46vw}}
 .hf-wc{width:min(70vh,57vw);margin-left:calc(min(70vh,57vw)/-2);margin-top:calc(min(70vh,57vw)*-.47)}
 @media(max-width:800px){.hf-wc{width:100vw;margin-left:-50vw;margin-top:-47vw}}
+/* v123 caption legibility */
+.hz-in,.hz-in *{color:#f3e3b5!important;text-shadow:0 2px 18px rgba(5,10,30,.8)!important}
+.hz-in small,.hz-in span:first-child{color:#d8b867!important}
