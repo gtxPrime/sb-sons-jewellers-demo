@@ -15,9 +15,26 @@ function go(){
  ScrollTrigger.create({trigger:'#hero',start:'bottom 80%',onEnter:()=>gsap.to(g,{opacity:.85,duration:.6}),onLeaveBack:()=>gsap.to(g,{opacity:0,duration:.4})});
  ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.3,overwrite:true})});
  ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.85,duration:.4})});
- /* 2. story: giant diamond grows, spins and fills the frame behind alternating chapters */
- gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.6})})
-  .fromTo('#sgem',{opacity:0,scale:.15,rotate:-40},{opacity:.55,scale:mobile?1.6:2.2,rotate:40,ease:'none',duration:1});
+ /* 2. story: a real 3D diamond tilts from side view to top view and back while it drifts between the chapters */
+ const sg=$('#sgem'),S=window.SBGem;
+ if(S&&S.ready){
+  S.on=false;const sx=mobile?0:innerWidth*.2;
+  gsap.set(sg,{opacity:0,scale:.5});
+  const tls=gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8,onToggle:t=>{S.on=t.isActive}})});
+  tls.to(sg,{opacity:mobile?.38:.95,scale:1,duration:.5,ease:'power2.out'},0)
+   .to(S,{rx:1.3,ry:Math.PI,duration:1,ease:'sine.inOut'},0)
+   .to(sg,{x:sx,duration:1,ease:'sine.inOut'},0)
+   .to(S,{rx:.18,ry:Math.PI*2.2,duration:1,ease:'sine.inOut'},1)
+   .to(sg,{x:-sx,duration:1,ease:'sine.inOut'},1)
+   .to(S,{rx:1.45,ry:Math.PI*3.4,duration:1,ease:'sine.inOut'},2)
+   .to(sg,{x:sx,duration:1,ease:'sine.inOut'},2)
+   .to(S,{rx:.2,ry:Math.PI*4.6,sc:1.15,duration:1,ease:'sine.inOut'},3)
+   .to(sg,{x:0,duration:1,ease:'sine.inOut'},3);
+  ScrollTrigger.create({trigger:'#story',start:'top bottom',end:'bottom top',onToggle:t=>{S.on=t.isActive}});
+ }else{
+  gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.6})})
+   .fromTo('#sgem',{opacity:0,scale:.15,rotate:-40},{opacity:.55,scale:mobile?1.6:2.2,rotate:40,ease:'none',duration:1});
+ }
  /* 3. word bands slide against each other */
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
@@ -26,7 +43,7 @@ function go(){
  gsap.from('.dw-img img',{scale:1.5,ease:'none',scrollTrigger:ST({trigger:'.dw-img',start:'top 95%',end:'bottom 40%'})});
  gsap.from('#count>div',{y:90,opacity:0,rotateX:-70,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'#count',start:'top 90%'}});
  gsap.from('#offerBox',{x:-120,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#offerBox',start:'top 90%'}});
- gsap.from('#offerCta',{x:120,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#offerCta',start:'top 95%'}});
+ gsap.fromTo('#offerCta',{y:60,opacity:0,scale:.8,clipPath:'inset(0 100% 0 0 round 40px)'},{y:0,opacity:1,scale:1,clipPath:'inset(0 0% 0 0 round 40px)',duration:1.3,ease:'expo.out',scrollTrigger:{trigger:'#offerCta',start:'top 96%'},onComplete:()=>$('#offerCta').classList.add('pulse')});
  /* 5. gallery cards: alternate sides, tilt in */
  gsap.from('#sl',{y:90,opacity:0,scale:.92,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#sl',start:'top 88%'}});
  /* 6. showroom: frame opens to full bleed while the photo pulls back */

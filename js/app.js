@@ -124,3 +124,23 @@ setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();docum
 })();
 
 (function(){const t=document.querySelectorAll('.tabs button');t.forEach(b=>b.onclick=()=>{t.forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id==='t-'+b.dataset.t));window.ScrollTrigger&&ScrollTrigger.refresh()})})();
+/* v42: custom scrollbar + smooth FAQ */
+(function(){
+ const bar=document.createElement('div');bar.id='sbar';bar.innerHTML='<i></i>';document.body.appendChild(bar);const th=bar.firstChild;let hide;
+ const dim=()=>{const H=document.documentElement.scrollHeight,V=innerHeight,tr=V-24;const h=Math.max(44,tr*V/H);return{H,V,h,tr}};
+ function upd(){const d=dim(),max=d.H-d.V;if(max<=0)return;const p=scrollY/max;th.style.height=d.h+'px';th.style.top=(12+p*(d.tr-d.h))+'px';bar.classList.add('show');clearTimeout(hide);hide=setTimeout(()=>bar.classList.remove('show'),1400)}
+ addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);
+ let dragging=false,sy=0,ss=0;
+ th.addEventListener('pointerdown',e=>{dragging=true;sy=e.clientY;ss=scrollY;bar.classList.add('drag');th.setPointerCapture(e.pointerId);e.preventDefault()});
+ th.addEventListener('pointermove',e=>{if(!dragging)return;const d=dim();window.scrollTo(0,ss+(e.clientY-sy)*(d.H-d.V)/(d.tr-d.h))});
+ const end=()=>{dragging=false;bar.classList.remove('drag')};th.addEventListener('pointerup',end);th.addEventListener('pointercancel',end);
+ bar.addEventListener('pointerdown',e=>{if(e.target===th)return;const d=dim(),p=(e.clientY-12-d.h/2)/(d.tr-d.h);window.scrollTo({top:Math.max(0,Math.min(1,p))*(d.H-d.V),behavior:'smooth'})});
+ /* faq */
+ document.querySelectorAll('.faqs details').forEach(dt=>{
+  const sm=dt.querySelector('summary'),p=dt.querySelector('p');
+  sm.addEventListener('click',e=>{e.preventDefault();
+   if(!window.gsap){dt.open=!dt.open;return}
+   if(dt.open){gsap.to(p,{height:0,opacity:0,duration:.5,ease:'power3.inOut',onComplete:()=>{dt.open=false;ScrollTrigger.refresh()}})}
+   else{document.querySelectorAll('.faqs details[open]').forEach(o=>{if(o!==dt)o.querySelector('summary').click()});dt.open=true;gsap.fromTo(p,{height:0,opacity:0},{height:'auto',opacity:1,duration:.65,ease:'power3.out',onComplete:()=>ScrollTrigger.refresh()})}
+  })});
+})();

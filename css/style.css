@@ -333,3 +333,34 @@ body.lock #hero .hero-in,body.lock #hero .scroll-cue{visibility:hidden}
 .sl-ct .btn{white-space:nowrap}
 .noanim .sl-card{opacity:1}
 .brand b{white-space:nowrap}@media(max-width:430px){.brand b{font-size:16px;letter-spacing:.1em}.brand img{height:34px}.brand{gap:8px}.nav-cta{padding:12px 16px!important}}
+/* v42: premium pass */
+html{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+#sbar{position:fixed;right:6px;top:0;bottom:0;width:10px;z-index:95;opacity:0;transition:opacity .4s}
+#sbar.show,#sbar:hover{opacity:1}
+#sbar i{position:absolute;left:3px;width:4px;border-radius:4px;background:linear-gradient(#f6e3ac,#b8924a);box-shadow:0 0 10px #d9b25f66;cursor:grab;transition:width .25s,left .25s;min-height:44px}
+#sbar:hover i,#sbar.drag i{width:8px;left:1px}
+#sbar:before{content:"";position:absolute;left:4px;width:2px;top:12px;bottom:12px;background:#d9b25f1f}
+@media(pointer:coarse){#sbar{display:none}html{scrollbar-width:none}}
+.story-gem{width:min(52vw,560px);aspect-ratio:1;filter:none}
+.story-gem.is3d img{display:none}
+.gem3d{width:100%!important;height:100%!important;display:block}
+.gem{width:54px;filter:drop-shadow(0 0 14px #f2d89699)}
+.gem svg{width:100%;display:block}
+.gem path{stroke:#e8c877!important}
+@media(max-width:700px){.gem{width:38px}.story-gem{width:84vw}}
+#offerCta.pulse{animation:cta 2.8s ease-in-out infinite}
+@keyframes cta{0%,100%{box-shadow:0 0 0 0 #f2d89655}50%{box-shadow:0 0 0 16px #f2d89600}}
+.faqs details p{margin:0;overflow:hidden}
+.faqs summary{transition:color .3s}.faqs summary:hover{color:var(--gold2)}
+/* space to breathe, restraint */
+#guide,#faq,#cta-fb,#reviews,#why,#visit,#insta,#shop{padding:clamp(110px,15vw,230px) 0}
+#diwali{padding:clamp(130px,17vw,260px) 0}
+#band{padding:clamp(70px,10vw,140px) 0}
+h2,#guide h2,#faq h2,#cta-fb h2{font-weight:400;letter-spacing:-.01em;line-height:1.04}
+.eyebrow{letter-spacing:.5em;font-size:10.5px;margin-bottom:6px;display:block}
+.btn{padding:17px 36px;letter-spacing:.26em;font-size:11px;font-weight:500}
+.note,.sub,.faqs p,#guide p{line-height:1.85}
+.faqs details{padding:30px 0;border-bottom:1px solid #d9b25f2a}
+.faqs summary{font-weight:400}
+.wrap{max-width:1180px}
+@media(max-width:700px){#guide,#faq,#cta-fb,#reviews,#why,#visit,#insta,#shop{padding:96px 0}#diwali{padding:110px 0}}
