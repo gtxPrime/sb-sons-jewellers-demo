@@ -401,16 +401,78 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 .tex.foil{background-image:url(../img/ai/tx-foil.jpg);mix-blend-mode:overlay;opacity:.16;-webkit-mask-image:linear-gradient(to top,#000,transparent 75%);mask-image:linear-gradient(to top,#000,transparent 75%)}
 .tex.velvet{background-image:url(../img/ai/tx-velvet.jpg);opacity:.45}
 @media(max-width:760px){.tex{opacity:.3}.tex.foil{opacity:.14}}
-/* v67 low-power mode: transform/opacity only */
-.lowfx .live::before,.lowfx .live::after,.lowfx .live.dust{animation:none!important;background-image:none}
-.lowfx .tex{display:none}
-.lowfx nav.top.solid,.lowfx #quick,.lowfx .rate-chip,.lowfx .card .tag{backdrop-filter:none;background:#070c1af2}
-.lowfx #sgem::after,.lowfx #sgem .glint{display:none}
-.lowfx body::after{display:none}
-.story-gem{will-change:transform,opacity;contain:layout paint}
-.story-gem img.f{will-change:opacity;aspect-ratio:1;height:auto;transform:translateZ(0)}
+
+/* v70 life: compositor-only motion */
+.live::before{animation:drift 26s ease-in-out infinite alternate!important;will-change:transform}
+.live::after{inset:0 auto 0 -40%;width:60%;background:linear-gradient(105deg,transparent,#f2d8961c 50%,transparent);background-size:auto;mix-blend-mode:normal;animation:sweepx 14s ease-in-out infinite;will-change:transform;display:block!important}
+@keyframes sweepx{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(300%,0,0)}}
+.live.dust{background-image:none}
+#dustfx,#dustfx2{position:fixed;left:0;right:0;top:0;height:200%;z-index:41;pointer-events:none;will-change:transform;opacity:.75}
+#dustfx{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='520'><g fill='%23f2d896'><circle cx='40' cy='60' r='1.6' opacity='.8'/><circle cx='210' cy='170' r='1.1' opacity='.6'/><circle cx='390' cy='90' r='1.8' opacity='.7'/><circle cx='120' cy='330' r='1.2' opacity='.6'/><circle cx='300' cy='410' r='1.6' opacity='.8'/><circle cx='470' cy='300' r='1' opacity='.5'/><circle cx='70' cy='480' r='1.3' opacity='.6'/></g></svg>") 0 0/520px 520px;animation:dustup 60s linear infinite}
+#dustfx2{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='760' height='760'><g fill='%23ffffff'><circle cx='90' cy='120' r='2' opacity='.5'/><circle cx='420' cy='60' r='1.4' opacity='.45'/><circle cx='640' cy='300' r='2.2' opacity='.5'/><circle cx='250' cy='520' r='1.6' opacity='.45'/><circle cx='560' cy='660' r='1.8' opacity='.5'/></g></svg>") 0 0/760px 760px;animation:dustup 110s linear infinite;opacity:.5}
+@keyframes dustup{to{transform:translate3d(0,-50%,0)}}
+#sgem img.f{animation:bob 7s ease-in-out infinite}
+@keyframes bob{50%{transform:translate3d(0,-2.2%,0) scale(1.015)}}
+.story-ring{animation:spin 80s linear infinite}.story-ring.r2{animation-duration:55s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn{position:relative;overflow:hidden}
+.btn.gold::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(105deg,transparent,#ffffff66,transparent);transform:translate3d(0,0,0) skewX(-20deg);transition:none;pointer-events:none}
+.btn.gold:hover::after{animation:shine .9s ease}
+@keyframes shine{to{transform:translate3d(420%,0,0) skewX(-20deg)}}
+.card,.sl-card.act,.cpanel{transition:transform .5s var(--ease),box-shadow .5s}
 .tex{mix-blend-mode:normal!important;opacity:.14!important}
-/* v67 perf: living backgrounds are painted once (no per-frame repaint), solid bars instead of backdrop blur */
-.live::before,.live::after,.live.dust{animation:none!important}
 nav.top.solid,#quick,.rate-chip,.card .tag{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#070c1af0}
-.live{contain:paint}
+/* gentler on phones and low-power */
+.lowfx .tex{display:none}
+.lowfx #dustfx2{display:none}
+.lowfx #dustfx{opacity:.5;animation-duration:90s}
+.lowfx .live::before{animation-duration:42s!important}
+.lowfx .live::after{display:none!important}
+.lowfx #sgem .glint,.lowfx #sgem::after,.lowfx body::after{display:none}
+.lowfx .story-ring.r2{animation:none}
+@media(prefers-reduced-motion:reduce){#dustfx,#dustfx2,.live::before,.live::after,#sgem img.f,.story-ring{animation:none!important}}
+/* theme toggle */
+#themeBtn{width:40px;height:40px;border-radius:50%;border:1px solid #d9b25f66;display:grid;place-items:center;color:var(--gold2)}
+#themeBtn .sun{display:none}
+html.light #themeBtn .sun{display:block}html.light #themeBtn .moon{display:none}
+/* v70 light theme: ivory and champagne; story, Diwali, showroom, visit and footer stay as dark jewel-box scenes */
+html.light{--navy:#fbf6ea;--navy2:#f2e8d0;--ivory:#1d1608;--gold2:#8a6718;--gold3:#6a4d10;color-scheme:light}
+html.light body{background:#fbf6ea;color:#2a2112}
+html.light #story,html.light #diwali,html.light #showroom,html.light #visit,html.light footer,html.light #loader{--navy:#070c1a;--navy2:#0d1530;--ivory:#f6efe0;--gold2:#f2d896;--gold3:#9c7a2f;color:#f6efe0}
+html.light #story{background:#0d1530}
+html.light #hero{background:linear-gradient(#fbf6eacc,#fbf6eaf2),url(../img/ai/ai-hero.jpg) center/cover,#fbf6ea;color:#1d1608}
+html.light #hero p,html.light #hero .sub{color:#4a3d22}
+html.light #coll,html.light #insta,html.light #faq,html.light #gallery{background:#fbf6ea}
+html.light #why,html.light #shop{background:linear-gradient(#fbf6ea,#f4ead2)}
+html.light #reviews,html.light #guide,html.light #cta-fb{background:linear-gradient(180deg,#fbf6ea,#f2e8d0)}
+html.light #band{background:#f2e8d0}
+html.light #gallery{background:radial-gradient(ellipse at 50% 60%,#e9d7a755,transparent 70%),#fbf6ea}
+html.light nav.top.solid{background:#fbf6eaf2!important;box-shadow:0 1px 0 #d9b25f55}
+html.light nav.top{color:#1d1608}
+html.light #quick,html.light .rate-chip,html.light .card .tag{background:#fbf6eaf2!important;color:#6a4d10;border-color:#b8924a99}
+html.light .card{background:#fffaf0;border-color:#d9b25f55;box-shadow:0 10px 30px #8a671822}
+html.light .sl-card{background:#fffaf0;box-shadow:0 18px 40px #8a671833}
+html.light .sl-a{background:#fbf6eaf2;color:#6a4d10}
+html.light #menu{background:#fbf6ea;color:#1d1608}
+html.light #drawer{background:#fbf6ea;color:#1d1608}
+html.light h1,html.light h2,html.light h3,html.light h4{color:#1d1608}
+html.light #story h1,html.light #story h2,html.light #story .story-line,html.light #diwali h2,html.light #diwali h3,html.light #visit h2,html.light #visit h3,html.light #showroom h2{color:#f6efe0}
+html.light p,html.light li,html.light .lead,html.light summary,html.light small{color:#4a3d22}
+html.light #story p,html.light #story small,html.light #diwali p,html.light #diwali small,html.light #diwali li,html.light #visit p,html.light #visit li,html.light #visit small,html.light #showroom p,html.light footer,html.light footer p,html.light footer small,html.light footer li{color:#d8ccb0}
+html.light .eyebrow{color:#8a6718}
+html.light .gold-text{background-image:linear-gradient(100deg,#6a4d10,#b8924a 40%,#8a6718 60%,#b8924a)}
+html.light #story .gold-text,html.light #diwali .gold-text,html.light footer .gold-text,html.light #visit .gold-text{background-image:linear-gradient(100deg,var(--gold3),var(--gold2) 40%,var(--gold) 60%,var(--gold2))}
+html.light .btn.gold{background:linear-gradient(110deg,#a8832f,#d9b25f 45%,#f2d896);color:#1b1405}
+html.light .btn:not(.gold){color:#6a4d10;border-color:#b8924a}
+html.light #story .btn:not(.gold),html.light #diwali .btn:not(.gold),html.light #visit .btn:not(.gold){color:#f2d896;border-color:#d9b25f88}
+html.light .ghost span{-webkit-text-stroke-color:#e8c87766}
+html.light #grain{opacity:.04}
+html.light body::after{background:radial-gradient(120% 90% at 50% 50%,transparent 70%,#8a671820 100%)}
+html.light #dustfx{opacity:.9;filter:brightness(.55) saturate(1.4)}
+html.light #dustfx2{display:none}
+html.light .tex{display:none}
+html.light #hero .hero-mono,html.light .brand b{color:inherit}
+html.light .links a,html.light .iconbtn{color:#1d1608}
+html.light #story .links a{color:inherit}
+html.light .ticker,html.light .rate-chip{color:#6a4d10}
+html.light details,html.light .faq-item{border-color:#d9b25f66}

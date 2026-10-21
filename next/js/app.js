@@ -147,3 +147,5 @@ setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();docum
 ;(function(){try{if(!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var m=document.querySelector('#hero .hero-mono');if(m)gsap.to(m,{yPercent:-14,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
 document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i){if(i.closest('.slider'))return;gsap.fromTo(i,{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:i,start:'top bottom',end:'bottom top',scrub:true}})})}catch(e){}})();
+
+(function(){const b=document.getElementById('themeBtn');if(!b)return;const m=document.querySelector('meta[name=theme-color]');const sync=()=>{if(m)m.content=document.documentElement.classList.contains('light')?'#fbf6ea':'#070c1a'};sync();b.addEventListener('click',()=>{const l=document.documentElement.classList.toggle('light');try{localStorage.setItem('sbtheme',l?'light':'dark')}catch(e){}sync()})})();
