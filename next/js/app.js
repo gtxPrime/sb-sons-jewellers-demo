@@ -63,7 +63,7 @@ $('#quick').onclick=()=>{quick=!quick;document.documentElement.classList.toggle(
  if(quick){ScrollTrigger.getAll().forEach(t=>t.disable());gsap.set('.reveal,.story-line,.sc,.sr-bg,.sr-bg img,.story-gem,.mqw',{clearProps:'all'});gsap.set('#track',{clearProps:'all'});window.scrollTo(0,$('#gallery').offsetTop-60);}
  else{location.reload()}};
 /* animation */
-function intro(){
+let _in=0;function intro(){if(_in)return;_in=1;
  document.body.classList.remove('lock');
  gsap.set('#hero .hero-in>*,.scroll-cue',{clearProps:'opacity'});
  const tl=gsap.timeline();
@@ -120,7 +120,7 @@ function boot(){
  addEventListener('load',()=>ScrollTrigger.refresh());
 }
 if(document.readyState==='complete')boot();else addEventListener('load',boot);
-setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();document.body.classList.remove('lock')}},8000);
+setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();document.body.classList.remove('lock');intro()}},8000);
 })();
 
 (function(){const t=document.querySelectorAll('.tabs button');t.forEach(b=>b.onclick=()=>{t.forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id==='t-'+b.dataset.t));window.ScrollTrigger&&ScrollTrigger.refresh()})})();
