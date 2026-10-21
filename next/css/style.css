@@ -737,3 +737,4 @@ html #hero.hf .hf-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
  .hf-wc{width:90vw;margin-left:-45vw;margin-top:-29vh}
  #hero.hf .hz-in{font-size:24px;width:90vw}
 }
+#hero.hf .hf-h>span,#hero.hf .hf-h i,#hero.hf .hf-h em{overflow:visible!important}
