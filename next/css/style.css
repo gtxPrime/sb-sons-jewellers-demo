@@ -377,3 +377,9 @@ h2,#guide h2,#faq h2,#cta-fb h2{font-weight:400;letter-spacing:-.01em;line-heigh
 @keyframes sweep{0%,100%{background-position:120% 0}50%{background-position:-20% 0}}
 #diwali.live::before{background:radial-gradient(40% 35% at 25% 25%,#ffb74d33,transparent 70%),radial-gradient(35% 40% at 78% 70%,#ff4d6d22,transparent 70%),radial-gradient(30% 30% at 55% 10%,#f2d89628,transparent 70%)}
 @media(prefers-reduced-motion:reduce){.live::before,.live::after{animation:none}}
+/* v51 premium layer */
+.live>*{position:relative}
+body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 62%,#00000052 100%)}
+#hero .hero-mono{will-change:transform}
+@media(max-width:760px){.live::after{display:none}.live::before{animation-duration:40s}body::after{background:radial-gradient(130% 100% at 50% 50%,transparent 70%,#0000003d 100%)}}
+@media(prefers-reduced-motion:reduce){.live::before,.live::after{animation:none}}

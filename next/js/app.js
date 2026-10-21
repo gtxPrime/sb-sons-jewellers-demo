@@ -144,3 +144,6 @@ setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();docum
    else{document.querySelectorAll('.faqs details[open]').forEach(o=>{if(o!==dt)o.querySelector('summary').click()});dt.open=true;gsap.fromTo(p,{height:0,opacity:0},{height:'auto',opacity:1,duration:.65,ease:'power3.out',onComplete:()=>ScrollTrigger.refresh()})}
   })});
 })();
+;(function(){try{if(!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var m=document.querySelector('#hero .hero-mono');if(m)gsap.to(m,{yPercent:-14,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i){if(i.closest('.slider'))return;gsap.fromTo(i,{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:i,start:'top bottom',end:'bottom top',scrub:true}})})}catch(e){}})();
