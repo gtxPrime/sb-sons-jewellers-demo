@@ -690,3 +690,27 @@ body.lock #hero .hz-h,body.lock #hero .hz-ui{visibility:hidden}
 html.light nav.top:not(.solid),html.light nav.top:not(.solid) a:not(.btn),html.light nav.top:not(.solid) .brand,html.light nav.top:not(.solid) .brand *{color:#f4ecd8}
 #hero.hz .hz-ui .sub{max-width:310px;font-size:13px;line-height:1.5}
 html #hero.hz .hz-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c36f 50%,#f9e4ae)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:none!important;opacity:1}
+
+/* v110 hero: floating cut-out jewellery, no frames */
+#hero.hf{background:radial-gradient(ellipse at 50% 50%,#1b2858 0%,#0a1128 55%,#04070f 100%)}
+.hf-glow{position:absolute;left:50%;top:50%;width:90vmin;height:90vmin;margin:-45vmin 0 0 -45vmin;border-radius:50%;background:radial-gradient(circle,#e8c36f55 0%,#e8c36f18 38%,#0000 68%);z-index:1;pointer-events:none}
+.hf-h{position:absolute;inset:0;margin:0;z-index:2;pointer-events:none;display:block;padding:0;transform:none;font-size:clamp(54px,9.6vw,176px);line-height:.9;letter-spacing:-.015em;text-align:left;top:0}
+.hf-h>span{position:absolute;display:block;max-width:none}
+.hf-h i,.hf-h em{display:block;font-style:normal}
+.hf-h em{font-style:italic;font-weight:400}
+.hf-h i{color:#f4ecd8;text-shadow:0 6px 50px #0009}
+.hf-a{left:3.2vw;top:15vh}
+.hf-b{right:3.2vw;bottom:17vh;text-align:right}
+.hf-w{position:absolute;z-index:3;display:block;pointer-events:none}
+.hf-wc{left:50%;top:50%;width:min(64vh,46vw);margin-left:calc(min(64vh,46vw)/-2);margin-top:-37vh;z-index:3}
+.hf-wd{right:4vw;top:14vh;width:min(34vw,60vh);z-index:4}
+.hf-p{display:block;width:100%;height:auto;will-change:transform;filter:drop-shadow(0 30px 40px #000a)}
+.hf-d{transform:rotate(9deg)}
+.hz.hf .hz-ui{z-index:6}
+@media(max-width:800px){
+ .hf-h{font-size:clamp(46px,15vw,76px)}
+ .hf-a{left:0;right:0;top:15vh;text-align:center}
+ .hf-b{left:0;right:0;bottom:25vh;text-align:center}
+ .hf-wc{width:98vw;margin-left:-49vw;margin-top:-30vh}
+ .hf-wd{right:-10vw;top:17vh;width:50vw}
+}

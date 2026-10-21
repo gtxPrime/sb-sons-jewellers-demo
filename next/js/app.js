@@ -182,3 +182,26 @@ document.querySelectorAll('#diwali img,#insta img,#why img').forEach(function(i)
    .fromTo('.hz-in',{opacity:0,y:30},{opacity:1,y:0,duration:.35},.75)
    .to({},{duration:.25});
 })();
+
+/* v110 hero: floating cut-out jewellery, scrubbed depth */
+(function(){if(!window.gsap||!window.ScrollTrigger||document.documentElement.classList.contains('noanim'))return;
+ const H=document.getElementById('hero');if(!H||!H.classList.contains('hf'))return;
+ const C=H.querySelector('.hf-c'),D=H.querySelector('.hf-d');
+ gsap.from('.hf-glow',{scale:.3,opacity:0,duration:2.4,ease:'power3.out',delay:.2});
+ gsap.from('.hf-c',{scale:.7,opacity:0,rotate:-12,yPercent:8,duration:1.8,ease:'power3.out',delay:.5});
+ gsap.from('.hf-d',{scale:.6,opacity:0,rotate:30,x:120,duration:1.8,ease:'power3.out',delay:.9});
+ gsap.from('.hf-a i',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:.7});
+ gsap.from('.hf-b em',{yPercent:60,opacity:0,duration:1.2,stagger:.12,ease:'power3.out',delay:1.1});
+ gsap.to(C,{y:-12,duration:3.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ gsap.to(D,{y:14,duration:4.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ if(matchMedia('(pointer:fine)').matches)addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to('.hf-wc',{x:x*-26,y:y*-16,duration:1.2});gsap.to('.hf-wd',{x:x*50,y:y*30,duration:1.2});gsap.to('.hf-h',{x:x*18,duration:1.4});gsap.to('.hf-glow',{x:x*-60,y:y*-40,duration:1.6})});
+ const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=110%',pin:true,scrub:.7,anticipatePin:1}});
+ tl.to('.hz-ui,.scroll-cue',{opacity:0,y:20,duration:.15},0)
+   .to('.hf-wc',{scale:1.55,rotate:-5,yPercent:6,duration:1,ease:'power1.inOut'},0)
+   .to('.hf-wd',{yPercent:-120,xPercent:30,rotate:25,opacity:0,duration:.8,ease:'power2.in'},0)
+   .to('.hf-a',{xPercent:-35,opacity:0,duration:.7,ease:'power2.in'},.05)
+   .to('.hf-b',{xPercent:35,opacity:0,duration:.7,ease:'power2.in'},.05)
+   .to('.hf-glow',{scale:2.1,opacity:.9,duration:1},0)
+   .fromTo('.hz-in',{opacity:0,y:30},{opacity:1,y:0,duration:.35},.7)
+   .to({},{duration:.25});
+})();
