@@ -1,4 +1,5 @@
 window.SB={
+ survey:{mode:"demo",endpoint:"backend/submit.php",googleReview:"https://www.google.com/maps/search/?api=1&query=S+B+%26+SONS+JEWELLERS+Sikandra+Agra"},
  whatsapp:"918126560338",
  diwali:"2026-11-08T00:00:00+05:30",
  offerText:"Festive offers are announced at the showroom. Ask on WhatsApp for this season's Diwali offers.",

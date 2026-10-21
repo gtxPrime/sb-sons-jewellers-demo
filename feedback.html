@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Share your experience | S B &amp; Sons Jewellers, Agra</title>
+<meta name="description" content="Tell S B &amp; Sons Jewellers how your visit went. A two-minute survey, with an optional draft for your Google review.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Share your experience | S B &amp; Sons Jewellers"><meta property="og:image" content="https://gtxprime.github.io/sb-sons-jewellers-demo/img/og.jpg">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=30"><link rel="stylesheet" href="css/feedback.css?v=30">
+</head><body class="fb">
+<div id="grain"></div>
+<header class="fbh"><a href="./" class="brand" aria-label="Back to S B and Sons Jewellers"><img src="img/crest.png" alt="" width="42" height="40"><span><b>S B &amp; SONS</b><small>JEWELLERS</small></span></a><a class="back" href="./">Back to site</a></header>
+<main class="fbm">
+ <div class="demo-banner" id="demoBanner">Demo mode: your answers stay in this browser only. Nothing is sent to the showroom.</div>
+ <div class="eyebrow">Your experience</div>
+ <h1>Tell us how <span class="gold-text" style="font-style:italic">we did.</span></h1>
+ <p class="lead">Two minutes. Every question is optional. Your answers help us serve Agra better.</p>
+ <div class="prog"><i id="progBar"></i></div><div class="stepno" id="stepNo"></div>
+ <form id="f" novalidate autocomplete="off">
+  <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <section class="st" data-s="1"><h2>How did you hear about us?</h2><div class="chips" data-k="how" data-multi="1"></div>
+   <h2>What brought you in?</h2><div class="chips" data-k="purpose" data-multi="1"></div></section>
+  <section class="st" data-s="2"><h2>What did you look at or buy?</h2><div class="chips" data-k="bought" data-multi="1"></div>
+   <h2>Overall, how was your visit?</h2><div class="stars" id="stars" role="radiogroup" aria-label="Overall rating"></div></section>
+  <section class="st" data-s="3"><h2>The staff</h2><div class="chips" data-k="staff" data-multi="1"></div>
+   <h2>The showroom</h2><div class="chips" data-k="store" data-multi="1"></div>
+   <h2>The collection</h2><div class="chips" data-k="collection" data-multi="1"></div></section>
+  <section class="st" data-s="4"><h2>Trust and billing</h2><div class="chips" data-k="trust" data-multi="1"></div>
+   <h2>Getting here</h2><div class="chips" data-k="location" data-multi="1"></div>
+   <h2>Anything else?</h2><textarea id="more" rows="3" maxlength="500" placeholder="Optional. Anything you want us to know."></textarea></section>
+  <section class="st" data-s="5"><h2>About you <small>optional</small></h2>
+   <div class="fld"><label for="nm">Name</label><input id="nm" maxlength="60" autocomplete="off"></div>
+   <div class="fld"><label for="ph">Mobile number</label><input id="ph" inputmode="tel" maxlength="15" autocomplete="off" placeholder="10-digit number"></div>
+   <div class="fld"><label for="area">Area or locality in Agra</label><input id="area" maxlength="60"></div>
+   <label class="chk"><input type="checkbox" id="consent"><span>You may contact me on this number about my visit and about offers. I understand I can ask to be removed at any time. Leave unticked and I will not be contacted.</span></label></section>
+  <section class="st" data-s="6"><h2>Your review draft</h2>
+   <p class="small">A draft made only from the words you picked. Change anything, or write your own. Post only what is true for you.</p>
+   <textarea id="draft" rows="7" maxlength="900"></textarea>
+   <div class="row"><button type="button" class="btn ghost" id="regen">Rewrite the draft</button><button type="button" class="btn ghost" id="copy">Copy text</button></div>
+   <a class="btn gold" id="gbtn" target="_blank" rel="noopener" href="#">Copy and open Google review <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+   <p class="small">This button is the same for everyone. Posting on Google is your choice, and nothing is offered in return for a review.</p>
+   <div class="row"><button type="button" class="btn gold" id="save">Save my feedback</button></div>
+   <p class="ok" id="ok" hidden>Thank you. Your feedback is saved.</p></section>
+  <div class="nav"><button type="button" class="btn ghost" id="prev">Back</button><button type="button" class="btn gold" id="next">Next</button></div>
+ </form>
+ <p class="small priv">We use your answers to improve service and plan our outreach. Phone numbers are used only with your tick above.</p>
+</main>
+<div class="toast" id="toast"></div>
+<script src="js/config.js?v=30"></script><script src="js/feedback.js?v=30"></script>
+</body></html>
