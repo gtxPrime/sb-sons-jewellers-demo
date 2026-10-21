@@ -562,3 +562,21 @@ html.light #hero h1 em,html.light #hero h1 .gold-text{background:linear-gradient
 .igc{height:clamp(240px,34vw,400px)}
 .thc::after{margin-left:auto;margin-right:auto;transform-origin:center;background:linear-gradient(90deg,transparent,#d9b25f,transparent)}
 .ed .edq{left:0;right:0;width:max-content;margin-left:auto;margin-right:auto;transform:none!important}
+/* v97 diwali signature */
+.dw-stage{position:relative;width:fit-content;margin:0 auto}
+.mand{position:absolute;left:50%;top:50%;width:min(165%,820px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;overflow:visible;filter:drop-shadow(0 0 5px #f2d89655);opacity:.8;z-index:0}
+.dw-stage .dw-img{position:relative;z-index:1}
+.dw-row{position:relative;height:110px;margin:34px auto 22px;max-width:760px}
+.dw-row svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 6px #f2d89677);overflow:visible}
+.dy{position:absolute;width:30px;height:24px;margin:-8px 0 0 -15px}
+.dy u{position:absolute;left:0;right:0;bottom:0;height:13px;border:1.5px solid #f2d896;border-top:0;border-radius:0 0 30px 30px;background:#6b1a2b}
+.dy .fl{position:absolute;left:50%;bottom:11px;width:10px;height:18px;margin-left:-5px;border-radius:50% 50% 50% 50%/65% 65% 35% 35%;background:radial-gradient(#fff 10%,#ffd36a 45%,#ff9a2e);box-shadow:0 0 14px 6px #ffb84a99,0 0 40px 14px #ffb84a44;animation:flick 2.4s ease-in-out infinite}
+.dy:nth-child(even) .fl{animation-delay:-.9s}
+@keyframes flick{0%,100%{transform:scaleY(1) skewX(0)}50%{transform:scaleY(1.12) skewX(3deg)}}
+.embers{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.embers i{position:absolute;border-radius:50%;background:radial-gradient(#ffe7a8,#f2a93b 60%,transparent);box-shadow:0 0 10px 2px #f2a93b66}
+#diwali .wrap{z-index:1}
+.noanim .dw-row,.noanim .mand,.noanim .embers{display:none}
+.lowfx .dy .fl{animation:none}
+@media(prefers-reduced-motion:reduce){.dy .fl{animation:none}}
+@media(max-width:700px){.mand{width:150%}.dw-row{height:90px}}
