@@ -123,7 +123,7 @@ if(document.readyState==='complete')boot();else addEventListener('load',boot);
 setTimeout(()=>{const l=document.querySelector('#loader');if(l){l.remove();document.body.classList.remove('lock');intro()}},8000);
 })();
 
-(function(){const t=document.querySelectorAll('.tabs button');t.forEach(b=>b.onclick=()=>{t.forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id==='t-'+b.dataset.t));window.ScrollTrigger&&ScrollTrigger.refresh()})})();
+(function(){const t=document.querySelectorAll('.tabs:not(.sl-tabs) button');t.forEach(b=>b.onclick=()=>{t.forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.id==='t-'+b.dataset.t));window.ScrollTrigger&&ScrollTrigger.refresh()})})();
 /* v42: custom scrollbar + smooth FAQ */
 (function(){
  const bar=document.createElement('div');bar.id='sbar';bar.innerHTML='<i></i>';document.body.appendChild(bar);const th=bar.firstChild;let hide;
