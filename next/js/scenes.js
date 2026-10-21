@@ -32,6 +32,9 @@ function go(){
   .to(sg,{x:-sx,rotate:8,duration:.5,ease:'sine.inOut'},.85)
   .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.85)
   .to(sg,{x:-sx,rotate:5,scale:1.08,duration:.5,ease:'sine.inOut'},2.85);
+ const gh=$$('#story .ghost span');gsap.set(gh,{opacity:0,yPercent:12});
+ [0,.9,1.85,2.85].forEach((t,i)=>{rot.to(gh[i],{opacity:1,yPercent:0,duration:.35,ease:'power2.out'},t+.05);if(i<3)rot.to(gh[i],{opacity:0,yPercent:-12,duration:.3},t+.7)});
+ gsap.to('#sgem .glint',{backgroundPosition:'-160% 0',ease:'none',scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:1})});
  /* 3. word bands slide against each other */
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
