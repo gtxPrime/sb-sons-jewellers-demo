@@ -16,7 +16,7 @@ function go(){
  ScrollTrigger.create({trigger:'#coll',start:'top bottom',end:'bottom top',onToggle:s=>gsap.to(g,{opacity:s.isActive?0:.85,duration:.3,overwrite:true})});
  ScrollTrigger.create({trigger:'#visit',start:'top 60%',onEnter:()=>gsap.to(g,{opacity:0,duration:.4}),onLeaveBack:()=>gsap.to(g,{opacity:.85,duration:.4})});
  /* 2. story: the diamond turns from side view to top view and back (image sequence), drifting opposite each chapter */
- const sg=$('#sgem'),fr=$$('#sgem .f'),sx=mobile?0:innerWidth*.2;
+ const sg=$('#sgem'),fr=$$('#sgem .f'),sx=mobile?0:innerWidth*.27;
  gsap.set(sg,{opacity:0,scale:.6,xPercent:-50,yPercent:-50,left:'50%',top:'50%'});
  gsap.set(fr,{opacity:0});gsap.set(fr[0],{opacity:1});
  const rot=gsap.timeline({scrollTrigger:ST({trigger:'#story',start:'top top',end:'+=320%',scrub:.8})});
@@ -28,10 +28,10 @@ function go(){
   .to(fr[0],{opacity:1,duration:.5},2.1).to(fr[1],{opacity:0,duration:.5},2.1)
   .to(fr[1],{opacity:1,duration:.5},2.6).to(fr[0],{opacity:0,duration:.5},2.6)
   .to(fr[2],{opacity:1,duration:.5},3.1).to(fr[1],{opacity:0,duration:.5},3.1)
-  .to(sg,{x:sx,rotate:-6,duration:1,ease:'sine.inOut'},0)
-  .to(sg,{x:-sx,rotate:8,duration:1,ease:'sine.inOut'},1)
-  .to(sg,{x:sx,rotate:-4,scale:1.1,duration:1,ease:'sine.inOut'},2)
-  .to(sg,{x:0,rotate:0,scale:1.2,duration:1,ease:'sine.inOut'},3);
+  .to(sg,{x:sx,rotate:-6,duration:.3,ease:'sine.out'},0)
+  .to(sg,{x:-sx,rotate:8,duration:.5,ease:'sine.inOut'},.85)
+  .to(sg,{x:sx,rotate:-4,duration:.5,ease:'sine.inOut'},1.85)
+  .to(sg,{x:-sx,rotate:5,scale:1.08,duration:.5,ease:'sine.inOut'},2.85);
  /* 3. word bands slide against each other */
  gsap.fromTo('#bw1',{x:0},{x:()=>-($('#bw1').scrollWidth-innerWidth),ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
  gsap.fromTo('#bw2',{x:()=>-($('#bw2').scrollWidth-innerWidth)},{x:0,ease:'none',scrollTrigger:ST({trigger:'#band',start:'top bottom',end:'bottom top'})});
