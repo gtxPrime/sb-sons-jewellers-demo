@@ -746,3 +746,4 @@ html #hero.hf .hf-h em.gold-text{background:linear-gradient(100deg,#f7dc96,#e8c3
  .hf-wc{width:100vw;margin-left:-50vw;margin-top:-47vw}
  #hero.hf .hz-in{top:20vh;width:80vw;bottom:auto;font-size:26px}
 }
+@media(max-width:800px){.hf-disc{margin-left:-46vw}}
