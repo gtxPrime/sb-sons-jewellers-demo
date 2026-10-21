@@ -392,3 +392,4 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;bac
 @media(max-width:700px){#story .ghost{display:none}}
 @media(max-width:700px){#story .story-line{bottom:12%;top:auto}.story-gem{width:70vw}}
 @media(max-width:700px){#story .pin .story-line{top:auto!important;bottom:13%!important;margin:0!important;transform-origin:center}#story .story-line small{margin-bottom:10px}}
+#gem{display:none!important}
